@@ -8,6 +8,7 @@ var OccupancyManage = {
 				url : 'customer/getOccupancyList.do',
 				fitColumns : true,
 				rownumbers : true,
+				title:"客户入住记录",
 				pagination : true,
 				pageNumber : 1,
 				pageSize : 10,

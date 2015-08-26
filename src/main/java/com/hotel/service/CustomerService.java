@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hotel.core.ListResult;
 import com.hotel.dao.CustomerMapper; 
@@ -11,6 +12,7 @@ import com.hotel.dao.OccupancyMapper;
 import com.hotel.model.Customer;
 import com.hotel.viewmodel.OccupancyVM; 
 
+@Service
 public class CustomerService {
 
 	@Autowired CustomerMapper customerMapper;

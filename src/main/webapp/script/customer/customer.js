@@ -8,6 +8,7 @@ var CustomerManage = {
 				url : 'customer/getCustomerList.do',
 				fitColumns : true,
 				rownumbers : true,
+				title:"入住客户资料",
 				pagination : true,
 				pageNumber : 1,
 				pageSize : 10,

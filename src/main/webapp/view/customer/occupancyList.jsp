@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<div id="occupancyTb">
+	<div id="occupancyTb" style="display:none">
 		<div>
 			<p>
 				<a id="showAuto" name="showAuto" href="javascript:void(0);" 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hotel.core.ListResult;
 import com.hotel.dao.HotelMapper; 
@@ -13,6 +14,7 @@ import com.hotel.viewmodel.HotelVM;
 import com.hotel.viewmodel.RoomTypeVM;
 import com.hotel.viewmodel.RoomVM;
 
+@Service
 public class HotelService {
 
 	@Autowired HotelMapper hotelMapper;

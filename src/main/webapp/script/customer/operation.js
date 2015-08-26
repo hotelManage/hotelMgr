@@ -9,6 +9,7 @@ var OperationManage = {
 				fitColumns : true,
 				rownumbers : true,
 				pagination : true,
+				title:"客户操作记录",
 				pageNumber : 1,
 				pageSize : 10,
 				nowrap : false,

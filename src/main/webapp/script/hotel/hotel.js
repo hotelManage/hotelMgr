@@ -9,6 +9,7 @@ var HotelManage = {
 				fitColumns : true,
 				rownumbers : true,
 				pagination : true,
+				title:"酒店资料",
 				pageNumber : 1,
 				pageSize : 10,
 				nowrap : false,

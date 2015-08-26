@@ -155,7 +155,7 @@
   				c.name 			as customerName,
   				r.name 			as roomName,
   				h.name 			as hotelName,
-  				h.floor			as floor
+  				r.floor			as floor
   		from t_occupancy o 
   		left join t_customer c 	on o.customer_id = c.id
   		left join t_room 	 r  on o.room_id = r.id

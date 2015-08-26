@@ -9,6 +9,7 @@ var RoomTypeManage = {
 				fitColumns : true,
 				rownumbers : true,
 				pagination : true,
+				title:"房间类型",
 				pageNumber : 1,
 				pageSize : 10,
 				nowrap : false,

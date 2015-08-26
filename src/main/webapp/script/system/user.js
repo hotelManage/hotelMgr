@@ -1,10 +1,12 @@
 $(function() {
 	//getCurrentUser();
+	UserManage.loadUserList();
 });
 var UserManage = {
 	loadUserList : function() {
 		$('#userListGrid').datagrid({
 			url : 'user/getUserList.do',
+			title :"ç®¡ç†ç”¨æˆ·åˆ—è¡¨",
 			fitColumns : true,
 			rownumbers : true,
 			pagination : true,
@@ -20,17 +22,17 @@ var UserManage = {
 				field : 'id',
 				hidden : true
 			}, {
-				title : 'ÓÃ»§ĞÕÃû',
+				title : 'ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½',
 				field : 'name',
 				align : 'center',
 				width : 150,
 			},{
-				title : 'ÓÃ»§ÀàĞÍ',
+				title : 'ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½',
 				field : 'userType',
 				align : 'center',
 				width : 150
 			}, {
-				title : '¾ÆµêÃû³Æ',
+				title : 'ï¿½Æµï¿½ï¿½ï¿½ï¿½',
 				field : 'hotelName',
 				align : 'center',
 				width : 150

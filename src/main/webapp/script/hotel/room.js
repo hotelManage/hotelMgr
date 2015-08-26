@@ -9,6 +9,7 @@ var RoomManage = {
 				fitColumns : true,
 				rownumbers : true,
 				pagination : true,
+				title:"房间信息",
 				pageNumber : 1,
 				pageSize : 10,
 				nowrap : false,

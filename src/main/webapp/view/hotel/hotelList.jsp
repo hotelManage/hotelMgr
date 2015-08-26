@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<div id="hotelTb">
+	<div id="hotelTb"  style="display:none">
 		<div>
 			<p>
 				<a id="showAuto" name="showAuto" href="javascript:void(0);" 

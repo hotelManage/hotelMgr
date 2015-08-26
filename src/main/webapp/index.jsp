@@ -5,7 +5,7 @@
 <html>
 <head>
 	<base href="<%=basePath%>">
-	<script src='<%=basePath%>script/index.js' 	type='text/javascript'></script>
+	<script src='<%=basePath%>script/base/index.js' 	type='text/javascript'></script>
     <title>点趣车生活</title>
     
 </head> 

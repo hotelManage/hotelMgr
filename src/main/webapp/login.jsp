@@ -9,12 +9,12 @@
 <html>
 <head>
 	<base href="<%=basePath%>">  
-	<script src='<%=basePath%>script/jquery-1.11.1.min.js'	type='text/javascript'></script> 
+	<script src='<%=basePath%>script/base/jquery-1.11.1.min.js'	type='text/javascript'></script> 
 	<script src='<%=basePath%>script/easyui/jquery.easyui.1.4.1.min.js'	type='text/javascript'></script>
-	<script src='<%=basePath%>script/common.js' type='text/javascript'></script>
+	<script src='<%=basePath%>script/base/common.js' type='text/javascript'></script>
 	<link href='<%=basePath%>css/easyui/metro/easyui.css'	media='all' rel='stylesheet' type='text/css' />
-	<script src='<%=basePath%>script/login.js'	type='text/javascript'></script>
-	<script src='<%=basePath%>script/MD5.js'	type='text/javascript'></script>
+	<script src='<%=basePath%>script/base/login.js'	type='text/javascript'></script>
+	<script src='<%=basePath%>script/base/MD5.js'	type='text/javascript'></script>
       <style type="text/css">
         * {
             padding: 0;
@@ -175,7 +175,7 @@
             </div>
             <div class="panel-f"></div>
         </div>
-        <div id="logincopyright">Copy Right ®2014-2016 </div>
+        <div id="logincopyright">Copy Right ®2015-2016 </div>
     </div>
   </body>
 </html>

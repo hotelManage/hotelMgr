@@ -143,4 +143,31 @@
       checkout_time = #{checkoutTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+   <select id="loadOccupancyVMList"   parameterType="java.util.Map"  resultType="com.hotel.viewmodel.OccupancyVM"  >
+  		select  o.id 			as id,
+  				o.customer_id 	as customerId,
+  				o.room_id     	as roomId, 
+  				'' 				as certificatesKey, 
+  				o.checkin_time	as checkinTime, 
+  				o.checkout_time as checkoutTime,
+  				c.name 			as customerName,
+  				r.name 			as roomName,
+  				h.name 			as hotelName,
+  				h.floor			as floor
+  		from t_occupancy o 
+  		left join t_customer c 	on o.customer_id = c.id
+  		left join t_room 	 r  on o.room_id = r.id
+  		left join t_hotel 	 h  on h.id = r.hotel_id
+  		
+  		  
+  		<if test="pageStart !=null">
+  		limit #{pageStart,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  		</if>
+  </select>
+  
+   <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
+  		select count(*) from t_occupancy  
+  </select>
 </mapper>

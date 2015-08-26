@@ -27,7 +27,14 @@ var CustomerManage = {
 					title : '性别',
 					field : 'sex',
 					align : 'center',
-					width : 100
+					width : 100,
+					formatter:function(value,rowData,index){
+						if(value||value==1||value==0){
+							return "男";
+						}else{
+							return "女";
+						}
+					}
 				}, {
 					title : '身份证号',
 					field : 'idcard',

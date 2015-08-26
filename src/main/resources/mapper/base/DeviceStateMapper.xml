@@ -154,4 +154,32 @@
       value = #{value,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+   <select id="loadOperationVMList"   parameterType="java.util.Map"  resultType="com.hotel.viewmodel.OperationVM"  >
+		 select 
+				d.id 							as id,
+				d.ctl_type 				as ctlType,
+				d.device_type			as deviceType,
+				d.state_time			as stateTime,
+				d.`value`					as value,
+				c.name						as customerName,
+				r.name						as roomName,
+				h.name						as hotelName,
+				r.floor						as floor,
+				u.rcu_no					as rcuNo
+		from t_device_state d
+			left join t_occupancy o on d.occupancy_id = o.id
+			left join t_room r on o.room_id = r.id
+			left join t_hotel h on r.hotel_id = h.id
+			left join t_rcu u on d.rcu_id = u.id
+			left join t_customer c on c.id = o.customer_id
+  		<if test="pageStart !=null">
+  		limit #{pageStart,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  		</if>
+  </select>
+  
+   <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
+  		select count(*) from t_device_state  
+  </select>
 </mapper>

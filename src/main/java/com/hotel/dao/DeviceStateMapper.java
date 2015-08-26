@@ -1,7 +1,11 @@
 package com.hotel.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.hotel.core.MyBatisRepository;
 import com.hotel.model.DeviceState;
+import com.hotel.viewmodel.OperationVM;
 
 @MyBatisRepository
 public interface DeviceStateMapper {
@@ -52,4 +56,18 @@ public interface DeviceStateMapper {
      * @mbggenerated Mon Aug 24 23:10:28 CST 2015
      */
     int updateByPrimaryKey(DeviceState record);
+
+    /**
+     * 获取操作记录总数，用于分页
+     * @param map
+     * @return
+     */
+	int countByMap(Map<String, Object> map);
+
+	/**
+	 * 获取操作记录列表，分页显示
+	 * @param map
+	 * @return
+	 */
+	List<OperationVM> loadOperationVMList(Map<String, Object> map);
 }

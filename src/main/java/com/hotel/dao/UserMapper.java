@@ -59,5 +59,5 @@ public interface UserMapper {
      * @param map
      * @return
      */
-	User getUserByNameAndPwd(Map<String, Object> map);
+	User loadUserByNameAndPwd(Map<String, Object> map);
 }

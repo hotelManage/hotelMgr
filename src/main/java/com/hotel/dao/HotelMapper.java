@@ -1,7 +1,11 @@
 package com.hotel.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.hotel.core.MyBatisRepository;
 import com.hotel.model.Hotel;
+import com.hotel.viewmodel.HotelVM;
 
 @MyBatisRepository
 public interface HotelMapper {
@@ -52,4 +56,18 @@ public interface HotelMapper {
      * @mbggenerated Mon Aug 24 23:10:28 CST 2015
      */
     int updateByPrimaryKey(Hotel record);
+
+    /**
+     * 获取酒店记录总数
+     * @param map
+     * @return
+     */
+	int countByMap(Map<String, Object> map);
+
+	/**
+	 * 获取酒店列表信息，分页显示
+	 * @param map
+	 * @return
+	 */
+	List<HotelVM> loadHotelList(Map<String, Object> map);
 }

@@ -16,7 +16,7 @@
 		</div>
 		<div>
 			<div style="float: right; padding-top: 54px; padding-right: 12px;">
-				<a href="javascript:void(0);" class="easyui-linkbutton"  plain="true" style="color: black;" onclick="onChangePwd()">修改密码</a>
+				<!--<a href="javascript:void(0);" class="easyui-linkbutton"  plain="true" style="color: black;" onclick="onChangePwd()">修改密码</a>  -->
 				<a href="javascript:void(0);" class="easyui-linkbutton"  plain="true"  onclick="onExit()" style="color: black;">退出</a> 
 			</div>
 		</div> 
@@ -75,13 +75,6 @@
 	<div region="south"  style="background-color: #4974a4; height: 30px; overflow:hidden">
 		<table style="padding-top: 4px;">
 			<tr>
-				<td>
-					<label style="font-size: 13px; color: white;">部门：</label>
-				</td>
-				<td>
-					<label style="font-size: 13px; color: white;" id='labOrgName'>
-					</label>
-				</td>
 				<td style="padding-left: 40px;">
 					<label style="font-size: 13px; color: white;">当前用户：</label>
 				</td>
@@ -95,7 +88,7 @@
 	</div>
 <!-- 修改密码对话框 -->
 
-<div id="div_changePwd" style="display:none">
+<!-- <div id="div_changePwd" style="display:none">
 	<form action="index/changePwdAction.do" method="post">
 		<table style="margin: 20px;">
 			<tr style="height: 40px;">
@@ -116,6 +109,6 @@
 			</tr>
 		</table>
 	</form>
-</div>
+</div> -->
 </body>
 </html>

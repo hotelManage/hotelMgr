@@ -23,18 +23,28 @@ var OccupancyManage = {
 					align : 'center',
 					width : 100
 				}, {
+					title : '酒店名称',
+					field : 'hotelName',
+					align : 'center',
+					width : 100
+				},  {
+					title : '楼层号',
+					field : 'floor',
+					align : 'center',
+					width : 100
+				},  {
 					title : '房间号',
-					field : 'roomNo',
+					field : 'roomName',
 					align : 'center',
 					width : 100
 				}, {
 					title : '入住时间',
-					field : 'checkInTime',
+					field : 'checkinTime',
 					align : 'center',
 					width : 100,
 				}, {
 					title : '退房时间',
-					field : 'checkOutTime',
+					field : 'checkoutTime',
 					align : 'center',
 					width : 100
 				} ] ]

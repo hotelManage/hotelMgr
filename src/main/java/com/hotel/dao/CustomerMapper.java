@@ -1,5 +1,8 @@
 package com.hotel.dao;
 
+import java.util.List;
+import java.util.Map;
+ 
 import com.hotel.core.MyBatisRepository;
 import com.hotel.model.Customer; 
 @MyBatisRepository
@@ -51,4 +54,18 @@ public interface CustomerMapper {
      * @mbggenerated Mon Aug 24 23:10:28 CST 2015
      */
     int updateByPrimaryKey(Customer record);
+
+    /**
+     * 获取所有客户资料列表
+     * @param map
+     * @return
+     */
+	List<Customer> loadCustomerList(Map<String, Object> map);
+
+	/**
+	 * 获取客户总记录数
+	 * @param map
+	 * @return
+	 */
+	int countByMap(Map<String, Object> map);
 }

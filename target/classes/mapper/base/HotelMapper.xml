@@ -119,4 +119,22 @@
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <select id="loadHotelList"   parameterType="java.util.Map"  resultType="com.hotel.viewmodel.HotelVM"  >
+  		select 
+  			h.id		as id,
+  			h.name		as name,
+  			h.region_id	as regionId,
+  			h.note		as note,
+  			r.name 		as regionName
+  		from t_hotel h  
+  		left join t_region r on h.region_id = r.id
+  		<if test="pageStart !=null">
+  		limit #{pageStart,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  		</if>
+  </select>
+  
+   <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
+  		select count(*) from t_hotel  
+  </select>
 </mapper>

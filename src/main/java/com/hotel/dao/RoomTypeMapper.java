@@ -1,7 +1,11 @@
 package com.hotel.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.hotel.core.MyBatisRepository;
 import com.hotel.model.RoomType;
+import com.hotel.viewmodel.RoomTypeVM;
 
 @MyBatisRepository
 public interface RoomTypeMapper {
@@ -52,4 +56,18 @@ public interface RoomTypeMapper {
      * @mbggenerated Mon Aug 24 23:10:28 CST 2015
      */
     int updateByPrimaryKey(RoomType record);
+
+    /**
+     * 获取房间类型呢记录总数
+     * @param map
+     * @return
+     */
+	int countByMap(Map<String, Object> map);
+
+	/**
+	 * 获取房间类型列表，分页显示
+	 * @param map
+	 * @return
+	 */
+	List<RoomTypeVM> loadRoomTypeList(Map<String, Object> map);
 }

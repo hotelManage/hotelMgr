@@ -165,4 +165,17 @@
       psd = #{psd,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <select id="loadCustomerList"   parameterType="java.util.Map"  resultMap="BaseResultMap"  >
+  		select id, name, idcard, mobile,  reg_time, sex 
+  		from t_user  
+  		<if test="pageStart !=null">
+  		limit #{pageStart,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  		</if>
+  </select>
+  
+   <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
+  		select count(*) from t_user  
+  </select>
+  
 </mapper>

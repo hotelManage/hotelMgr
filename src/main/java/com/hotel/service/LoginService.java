@@ -14,7 +14,7 @@ public class LoginService {
 	
 	public User loadUserByNameAndPwd(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return userMapper.getUserByNameAndPwd(map);
+		return userMapper.loadUserByNameAndPwd(map);
 	}
 
 }

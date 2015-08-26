@@ -141,4 +141,10 @@
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getRegionList" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_region  
+    where parent_id = #{pid,jdbcType=INTEGER}
+  </select>
 </mapper>

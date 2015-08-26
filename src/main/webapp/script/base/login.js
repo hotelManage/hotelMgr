@@ -1,26 +1,26 @@
 $(function() {
 	var args = getUrlArgs();
 	if (args.optType == 0 || args.optType == "0") {
-		$.messager.alert("ç³»ç»Ÿæç¤º","ç”¨æˆ·åã€ç”¨æˆ·å¯†ç ä¸èƒ½ä¸ºç©º","error");
+		$.messager.alert("ÏµÍ³ÌáÊ¾","ÓÃ»§Ãû¡¢ÓÃ»§ÃÜÂë²»ÄÜÎª¿Õ","error");
 	} else if (args.optType == 1 || args.optType == "1") {
-		$.messager.alert("ç³»ç»Ÿæç¤º","å¯†ç ä¸èƒ½ä¸ºç©º","error");
+		$.messager.alert("ÏµÍ³ÌáÊ¾","ÃÜÂë²»ÄÜÎª¿Õ","error");
 	} else if (args.optType == 2 || args.optType == "2") {
-		$.messager.alert("ç³»ç»Ÿæç¤º","ç”¨æˆ·å·²è¢«é”å®šï¼Œå¦‚éœ€è¦ç™»å½•ï¼Œè¯·è”ç³»ç®¡ç†å‘˜","warning");
+		$.messager.alert("ÏµÍ³ÌáÊ¾","ÓÃ»§ÒÑ±»Ëø¶¨£¬ÈçĞèÒªµÇÂ¼£¬ÇëÁªÏµ¹ÜÀíÔ±","warning");
 	} else if (args.optType == 3 || args.optType == "3") {
-		$.messager.alert("ç³»ç»Ÿæç¤º","ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯","info");
+		$.messager.alert("ÏµÍ³ÌáÊ¾","ÓÃ»§Ãû»òÃÜÂë´íÎó","info");
 	} else if (args.optType == 4 || args.optType == "4") {
-		$.messager.alert("ç³»ç»Ÿæç¤º","ç³»ç»Ÿç™»å½•é”™è¯¯ï¼Œè¯·è”ç³»ç½‘ç«™ç®¡ç†å‘˜","info");
+		$.messager.alert("ÏµÍ³ÌáÊ¾","ÏµÍ³µÇÂ¼´íÎó£¬ÇëÁªÏµÍøÕ¾¹ÜÀíÔ±","info");
 	}
 	$("#txtusername").keydown(function(e) {
 		if (e.keyCode == 13) {
 			var username = $("#txtusername").val();
 			var password = $("#txtpassword").val();
 			if(username==""||username.length==0){
-				$.messager.alert("ç³»ç»Ÿæç¤º","è¯·è¾“å…¥ç”¨æˆ·åå’Œå¯†ç ","error")
+				$.messager.alert("ÏµÍ³ÌáÊ¾","ÇëÊäÈëÓÃ»§ÃûºÍÃÜÂë","error")
 				return;
 			}
 			if(password==""||password.length==0){
-				$.messager.alert("ç³»ç»Ÿæç¤º","è¯·è¾“å…¥ç”¨æˆ·å¯†ç ","error")
+				$.messager.alert("ÏµÍ³ÌáÊ¾","ÇëÊäÈëÓÃ»§ÃÜÂë","error")
 				return;
 			}
 			$("#submitform").submit();
@@ -31,11 +31,11 @@ $(function() {
 			var username = $("#txtusername").val();
 			var password = $("#txtpassword").val();
 			if(username==""||username.length==0){
-				$.messager.alert("ç³»ç»Ÿæç¤º","è¯·è¾“å…¥ç”¨æˆ·åå’Œå¯†ç ","error")
+				$.messager.alert("ÏµÍ³ÌáÊ¾","ÇëÊäÈëÓÃ»§ÃûºÍÃÜÂë","error")
 				return;
 			}
 			if(password==""||password.length==0){
-				$.messager.alert("ç³»ç»Ÿæç¤º","è¯·è¾“å…¥ç”¨æˆ·å¯†ç ","error")
+				$.messager.alert("ÏµÍ³ÌáÊ¾","ÇëÊäÈëÓÃ»§ÃÜÂë","error")
 				return;
 			}
 			$("#submitform").submit();

@@ -135,6 +135,6 @@
   </select>
   
    <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
-  		select count(*) from t_room  
+  		select count(*) from t_room_type  
   </select>
 </mapper>

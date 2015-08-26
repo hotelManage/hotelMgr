@@ -1,9 +1,9 @@
 package com.hotel.dao;
 
 import java.util.List;
+
 import com.hotel.core.MyBatisRepository;
 import com.hotel.model.Region;
-import com.hotel.viewmodel.RegionVM;
 
 @MyBatisRepository
 public interface RegionMapper {
@@ -55,5 +55,5 @@ public interface RegionMapper {
      */
     int updateByPrimaryKey(Region record);
 
-	List<RegionVM> getRegionList(Integer pid);
+	List<Region> getRegionList(Integer pid);
 }

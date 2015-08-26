@@ -22,17 +22,17 @@ var UserManage = {
 				field : 'id',
 				hidden : true
 			}, {
-				title : '�û�����',
+				title : '管理员姓名',
 				field : 'name',
 				align : 'center',
 				width : 150,
 			},{
-				title : '�û�����',
+				title : '管理员类型',
 				field : 'userType',
 				align : 'center',
 				width : 150
 			}, {
-				title : '�Ƶ����',
+				title : '酒店名称',
 				field : 'hotelName',
 				align : 'center',
 				width : 150

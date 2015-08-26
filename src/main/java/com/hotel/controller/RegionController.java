@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hotel.model.Region;
 import com.hotel.service.RegionService;
 import com.hotel.viewmodel.RegionVM;
 
@@ -30,7 +31,7 @@ public class RegionController {
 			HttpServletRequest request, HttpServletResponse response
 			){
 		Integer pid = null;  
-		List<RegionVM> ls = new ArrayList<RegionVM>();
+		List<Region> ls = new ArrayList<Region>();
 		List<RegionVM> list = new ArrayList<RegionVM>();
 		if (hybrid_id != null) {
 			pid = hybrid_id;  
@@ -43,10 +44,10 @@ public class RegionController {
 		String resutl  = json.toString();
 		return resutl;
 	}
-	private List<RegionVM> getNodes(List<RegionVM> ls, Integer pid) {
+	private List<RegionVM> getNodes(List<Region> ls, Integer pid) {
 		// TODO Auto-generated method stub
 		List<RegionVM> list = new ArrayList<RegionVM>(); 
-		for(RegionVM o :ls ){
+		for(Region o :ls ){
 			if(o.getParentId() == pid){
 				RegionVM v = new RegionVM();
 				v.setId(o.getId());
@@ -54,7 +55,7 @@ public class RegionController {
 				v.setParentId(o.getParentId()); 
 				v.setLevel(o.getLevel());
 				v.setName(o.getName());
-				List<RegionVM> l = getItemByParentId(o.getId());
+				List<Region> l = getItemByParentId(o.getId());
 				if(l.size()>0){ 
 					v.setChildren(getNodes(l,o.getId())); 
 				}else{
@@ -65,9 +66,9 @@ public class RegionController {
 		}
 		return list;
 	}
-	private List<RegionVM> getItemByParentId(Integer id) {
+	private List<Region> getItemByParentId(Integer id) {
 		// TODO Auto-generated method stub
-		List<RegionVM> ls = regionService.getRegionList(id); 
+		List<Region> ls = regionService.getRegionList(id); 
 		return ls;
 	}
 }

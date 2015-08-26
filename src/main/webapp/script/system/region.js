@@ -1,5 +1,5 @@
 $(function() { 
-	//getCurrentUser();
+	RegionManage.loadRegionList();
 }); 
 var region_obj={};
 var RegionManage = {
@@ -13,8 +13,8 @@ var RegionManage = {
 		        //toolbar:'#regionTb',
 		        columns: [[
 		               { title: 'id', field: 'id', align: 'left', width: 200,hidden:true } ,
-		               { title: '区域名称', field: 'name', align: 'left', width: 300 }, 
-		               { title: '备注信息', field: 'note', align: 'center', width: 200 }
+		               { title: '鍖哄煙鍚嶇О', field: 'name', align: 'left', width: 300 }, 
+		               { title: '澶囨敞淇℃伅', field: 'note', align: 'center', width: 200 }
 		        ]]
 		    });
 		},

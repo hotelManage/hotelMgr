@@ -4,6 +4,9 @@ $(function() {
 		checkbox : false, 
 		onClick : onTreeMenuDblClick
 	}); 
+	var obj = {};
+	obj.text = "房间信息";
+	onTreeMenuDblClick(obj);
 });
 
 /**

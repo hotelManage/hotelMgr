@@ -46,7 +46,7 @@ var CustomerManage = {
 					align : 'center',
 					width : 100
 				}, {
-					title : '注册时间',
+					title : '记录时间',
 					field : 'regTime',
 					align : 'center',
 					width : 100

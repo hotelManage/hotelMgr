@@ -152,14 +152,13 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="countByMap" resultType="java.lang.Integer"   parameterType="java.util.Map" >
-  		select count(*) from t_user 
-  		where 1=1 
+  		select count(*) from t_user  
   </select>
   <select id="loadUserlistWithPage"   parameterType="java.util.Map"  resultMap="BaseVMResultMap"  >
   		select <include refid="BaseVM_Column_List" /> 
   		from t_user u 
-  		left join t_hotel h on u.hotel_id = h.id
-  		where 1=1
+  		left join t_hotel h on u.hotel_id = h.id 
+  		order by u.hotel_id
   		<if test="pageStart !=null">
   		limit #{pageStart,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
   		</if>

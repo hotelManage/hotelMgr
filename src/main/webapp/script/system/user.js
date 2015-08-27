@@ -22,17 +22,26 @@ var UserManage = {
 				field : 'id',
 				hidden : true
 			}, {
-				title : '管理员姓名',
+				title : '用户名',
 				field : 'name',
 				align : 'center',
 				width : 150,
 			},{
-				title : '管理员类型',
+				title : '用户类型',
 				field : 'userType',
 				align : 'center',
-				width : 150
+				width : 150,
+				formatter(value,rowData,index){
+					if(value==1||value=="1"){
+						return "超级管理员";
+					}else if(value==2||value=="2"){
+						return "普通管理员";
+					}else if(value==3||value=="3"){
+						return "员工 ";
+					}
+				}
 			}, {
-				title : '酒店名称',
+				title : '所属酒店',
 				field : 'hotelName',
 				align : 'center',
 				width : 150

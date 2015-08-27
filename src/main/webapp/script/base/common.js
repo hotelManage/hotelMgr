@@ -13,3 +13,21 @@ function getUrlArgs() {
 	}
 	return theRequest;
 }
+function getCurrentUser() {
+	var user = {};
+	$.ajax({
+		url : 'login/getCurrentUser.do',
+		type : "POST",
+		dataType : "json",
+		async : false,
+		success : function(req) {
+			if (req.isSuccess) {
+				user = req.data; 
+			} else {
+				alert(req.msg);
+				user = undefined;
+			}
+		}
+	});
+	return user;
+}

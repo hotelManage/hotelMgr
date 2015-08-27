@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hotel.core.Result;
 import com.hotel.model.User;
-import com.hotel.service.LoginService; 
+import com.hotel.service.LoginService;  
  
 
 /**
@@ -87,6 +88,39 @@ public class loginController {
 			throws IOException {
 		request.getSession().invalidate();// 清除当前用户相关的session对象
 		response.sendRedirect("../login.jsp"); 
+	}
+	
+	/**
+	 * 退出主页，返回登录页面
+	 * 
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "getCurrentUser.do", produces = "application/json;charset=UTF-8")
+	public @ResponseBody
+	String getCurrentUser(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		try{
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
+			
+			String message="";
+			boolean isSessionExpired = false;
+			boolean isSuccess = true;
+			if(user == null)
+			{
+				isSessionExpired = true;
+				isSuccess = false;
+				message = "Session过期，请重新登录";
+			}
+			Result<User> s = new Result<User>(user, isSuccess,
+					isSessionExpired, false, message);
+			return s.toJson();
+		} catch (Exception ex) {
+			String message = "Session过期，请重新登录";
+			Result<User> s = new Result<User>(null, false, true,
+					false, message);
+			return s.toJson();
+		}
 	}
 	
 	/**

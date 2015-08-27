@@ -1,5 +1,21 @@
  
 $(function() {    
+	var userObj = getCurrentUser();
+	if(userObj){
+		$("#userName").text(userObj.name);
+		var value = userObj.userType;
+		if(value==1||value=="1"){
+			$("#userType").text("超级管理员");
+		}else if(value==2||value=="2"){
+			$("#userType").text("普通管理员");
+		}else if(value==3||value=="3"){
+			$("#userType").text("员工 ");
+		}else{
+			$("#userType").text("普通管理员");
+		} 
+	}else{
+		location = "login/onExit.do";
+	}
 	$('#treeMenu').tree({
 		checkbox : false, 
 		onClick : onTreeMenuDblClick

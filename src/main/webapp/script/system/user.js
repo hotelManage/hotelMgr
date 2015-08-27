@@ -38,6 +38,8 @@ var UserManage = {
 						return "普通管理员";
 					}else if(value==3||value=="3"){
 						return "员工 ";
+					}else{
+						return "普通管理员";
 					}
 				}
 			}, {

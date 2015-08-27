@@ -80,8 +80,14 @@
 				</td>
 				<td>
 					<label style="font-size: 13px; color: white;" id='userName'>
-					</label>
-					<input type="hidden" id="isUserAllDataPermission" />
+					</label> 
+				</td>
+				<td style="padding-left: 40px;">
+					<label style="font-size: 13px; color: white;">用户类型：</label>
+				</td>
+				<td>
+					<label style="font-size: 13px; color: white;" id='userType'>
+					</label> 
 				</td>
 			</tr>
 		</table>

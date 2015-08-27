@@ -15,10 +15,16 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-	<!-- socket服务配置 --> 
+	<!-- socket监听端口 --> 
 	<context-param>
 		<param-name>socketPort</param-name>
         <param-value>10668</param-value> 
+	</context-param>
+
+	<!-- RCU心跳间隔时间 （秒）--> 
+	<context-param>
+		<param-name>RCUBeatInterval</param-name>
+        <param-value>300</param-value> 
 	</context-param>
 
 	<listener>

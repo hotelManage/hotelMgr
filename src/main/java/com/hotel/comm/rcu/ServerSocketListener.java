@@ -1,6 +1,5 @@
 package com.hotel.comm.rcu;
 
-import java.net.ServerSocket;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.ServletContextEvent;
@@ -8,12 +7,25 @@ import javax.servlet.ServletContextListener;
 
 public class ServerSocketListener implements ServletContextListener{
 
-	private int port; //����˿�
+	private static int port;
+	private static long rcuBeatInterval;
+	private static ConcurrentHashMap<String,ClientSocketRunner> clientRunners;
+	
 	private  ServerSocketRunner serverSocketRunner;
 
-	private ConcurrentHashMap<String,ClientSocketRunner> clientRunners;
 	
+	public  static int getPort(){
+		return port;
+	}
 
+	public   static long getRcuBeatInterval(){
+		return rcuBeatInterval;
+	}
+	
+	public static ConcurrentHashMap<String,ClientSocketRunner> getClientRunners(){
+		return clientRunners;
+	}
+	
 	public void contextDestroyed(ServletContextEvent event) {
 		// TODO Auto-generated method stub
 		
@@ -21,7 +33,12 @@ public class ServerSocketListener implements ServletContextListener{
 
 	public void contextInitialized(ServletContextEvent event) {
 		String portStr = event.getServletContext().getInitParameter("socketPort");
-		int port=Integer.parseInt(portStr);
+		String rcuBeatIntervalStr=event.getServletContext().getInitParameter("RCUBeatInterval");
+		
+		ServerSocketListener.port=Integer.parseInt(portStr);
+		ServerSocketListener.rcuBeatInterval=Long.parseLong(rcuBeatIntervalStr);
+		
+		clientRunners=new ConcurrentHashMap<String,ClientSocketRunner>();
 		
 		serverSocketRunner=new ServerSocketRunner(port);
 		serverSocketRunner.setPriority(8); //

@@ -19,7 +19,11 @@ import org.springframework.web.socket.server.standard.SpringConfigurator;
 
 import com.hotel.service.CustomerService;
 
-
+/**
+ * websocket 连接管理
+ * @author charo
+ *
+ */
 @ServerEndpoint(value="/appWsLink/{customerId}",configurator = SpringConfigurator.class)
 public class AppWsLink {
 
@@ -85,13 +89,16 @@ public class AppWsLink {
 		appLinks.remove(customerId);
 	}
 
+	/**
+	 * 发生错误
+	 * @param session
+	 * @param t
+	 */
 	@OnError
 	public void onError(Session session, Throwable t) {
 
 	}
-	
-	
-	
+
 	/**
 	 * 发送数据到客户端
 	 * @param msg

@@ -24,7 +24,11 @@ public class MessageRouter {
 			client.addAction(jo);
 		}
 	}
-	
+	/**
+	 * 发送消息到app.
+	 * @param customerId
+	 * @param jo
+	 */
 	public static void message2App(String customerId,JSONObject jo){
 		AppWsLink app=AppWsLink.getAppLinks().get(customerId);
 		if(app!=null){

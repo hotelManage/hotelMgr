@@ -85,7 +85,9 @@ public class ClientSocketRunner extends Thread {
 					this.receive(in);
 
 				} else {
-					interval = System.currentTimeMillis() - currentTime; //两次发送数据之间的时间差，超过预定时间，就关闭连接。
+					//两次发送数据之间的时间差，超过预定时间，就关闭连接。
+					//超时连接数字设置在web.xml
+					interval = System.currentTimeMillis() - currentTime; 
 
 					if (interval > ServerSocketListener.getRcuBeatInterval() * 1000) {
 						isRun = false;

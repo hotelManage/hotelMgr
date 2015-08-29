@@ -20,11 +20,11 @@ public class ServerSocketRunner extends Thread{
 		this.prot=prot;
 	}
 	
-	public boolean isRun() {
+	public synchronized boolean isRun() {
 		return isRun;
 	}
 	
-	public void setRun(boolean isRun) {
+	public synchronized void setRun(boolean isRun) {
 		this.isRun = isRun;
 	}
 	

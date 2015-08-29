@@ -5,7 +5,6 @@
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
-	xmlns:websocket="http://www.springframework.org/schema/websocket" 
 	xsi:schemaLocation="
 		  http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
@@ -20,8 +19,7 @@
            http://www.springframework.org/schema/task           
            http://www.springframework.org/schema/task/spring-task-4.2.xsd
            http://www.springframework.org/schema/data/mongo
-    		http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
-    		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd" >
+    		http://www.springframework.org/schema/data/mongo/spring-mongo.xsd" >
              
            <!-- Spring启动扫描类文件路径 -->
 	<context:component-scan base-package="com.hotel">

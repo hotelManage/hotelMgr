@@ -2,7 +2,6 @@
 <web-app 
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:websocket="http://www.springframework.org/schema/websocket"  
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     version="3.0">
     
@@ -26,7 +25,7 @@
 	<!-- RCU心跳间隔时间 （秒）--> 
 	<context-param>
 		<param-name>RCUBeatInterval</param-name>
-        <param-value>300</param-value> 
+        <param-value>310</param-value> 
 	</context-param>
 
 	<listener>

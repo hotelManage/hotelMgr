@@ -1,4 +1,4 @@
-package com.hotel.comm.rcu;
+package com.hotel.link.rcu;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * ·şÎñÆ÷¶Ësocket¼àÌı
+ * æœåŠ¡å™¨ç«¯ç›‘å¬çº¿ç¨‹
  * @author charo
  *
  */
@@ -15,8 +15,7 @@ public class ServerSocketRunner extends Thread{
 	private int prot; 
 	private ServerSocket serverSocket;
 	private volatile boolean isRun=true;
-	private ConcurrentHashMap<String,ClientSocketRunner> clientRunners;
-	
+
 	public ServerSocketRunner(int prot){
 		this.prot=prot;
 	}
@@ -40,7 +39,7 @@ public class ServerSocketRunner extends Thread{
 				ClientSocketRunner clientSocketRunner=new ClientSocketRunner(client);
 				clientSocketRunner.start();
 				
-				Thread.currentThread().sleep(100);//ÖĞ¶Ï
+				Thread.currentThread().sleep(100);//ï¿½Ğ¶ï¿½
 				System.out.println("123");
 			}
 			

@@ -6,7 +6,7 @@
 <head>
 	<base href="<%=basePath%>">
 	<script src='<%=basePath%>script/base/index.js' 	type='text/javascript'></script>
-    <title>点趣车生活</title>
+    <title>搜奇合创</title>
     
 </head> 
 <body id="cc" class="easyui-layout"  style="width:100%;height:100%; overflow: hidden;" oncontextmenu=self.event.returnValue=false>

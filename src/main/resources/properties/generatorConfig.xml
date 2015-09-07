@@ -3,9 +3,7 @@
   PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
   <generatorConfiguration> 
-  
-  <classPathEntry location="mysql-connector-java-5.1.14.jar"/>  
-       
+   
     <context id="mysql_tables" targetRuntime="MyBatis3">  
     	
         <commentGenerator>
@@ -22,67 +20,40 @@
         </javaTypeResolver>  
          
         <!-- 生成model模型，对应的包，存放位置可以指定具体的路径,如/ProjectName/src，也可以使用MAVEN来自动生成 -->  
-        <javaModelGenerator targetPackage="com.hotel.model" targetProject="E:\Workspaces\MyEclipse Professional\hotelManage\hotelmgr Maven Webapp\src\main\java">  
+        <javaModelGenerator targetPackage="com.hotel.model.rcu" targetProject="src\main\java">  
             <property name="enableSubPackages" value="true"/>  
         </javaModelGenerator>  
           
         <!--对应的xml mapper文件  	-->
-        <sqlMapGenerator  targetPackage="/mapper/base" targetProject="E:\Workspaces\MyEclipse Professional\hotelManage\hotelmgr Maven Webapp\src\main\resources">  
+        <sqlMapGenerator  targetPackage="/mapper/rcu" targetProject="src\main\resources">  
             <property name="enableSubPackages" value="true"/>  
         </sqlMapGenerator>  
           
           
         <!-- 对应的dao接口  --> 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hotel.dao" targetProject="E:\Workspaces\MyEclipse Professional\hotelManage\hotelmgr Maven Webapp\src\main\java">  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hotel.dao.rcu" targetProject="src\main\java">  
             <property name="enableSubPackages" value="true"/>  
         </javaClientGenerator>  
 
  
-	       <table tableName="t_customer" domainObjectName="Customer"
+	       <table tableName="t_device_cfg" domainObjectName="DeviceCfg"
            enableSelectByExample="false"
 	       enableDeleteByExample="false"
 	       enableCountByExample="false"
 	       enableUpdateByExample="false"/>
-	       <table tableName="t_device_state" domainObjectName="DeviceState"
-	        enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>  
-	       <table tableName="t_hotel" domainObjectName="Hotel"
-	       enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>  
-	       <table tableName="t_occupancy" domainObjectName="Occupancy"
-	       enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>  
-	       <table tableName="t_rcu" domainObjectName="Rcu"
-	       enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>  
-	       <table tableName="t_region" domainObjectName="Region"
-	       enableSelectByExample="false"
+	       
+	       <table tableName="t_device_cfg_item" domainObjectName="DeviceCfgItem"
+           enableSelectByExample="false"
 	       enableDeleteByExample="false"
 	       enableCountByExample="false"
 	       enableUpdateByExample="false"/>
-	       <table tableName="t_room" domainObjectName="Room"
-	       enableSelectByExample="false"
+	       
+	       <table tableName="t_rcu" domainObjectName="RCU"
+           enableSelectByExample="false"
 	       enableDeleteByExample="false"
 	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>  
-	       <table tableName="t_room_type" domainObjectName="RoomType"
-	       enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>  
-	       <table tableName="t_user" domainObjectName="User"
-	       enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>  
+	       enableUpdateByExample="false"/>
+	       
 
     </context>  
 </generatorConfiguration>  

@@ -12,26 +12,12 @@
   		<param-name>contextConfigLocation</param-name>
   		<param-value>/WEB-INF/applicationContext.xml</param-value>
  	</context-param>
+ 	
  	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-	<!-- socket监听端口 --> 
-	<context-param>
-		<param-name>socketPort</param-name>
-        <param-value>10668</param-value> 
-	</context-param>
 
-	<!-- RCU心跳间隔时间 （秒）--> 
-	<context-param>
-		<param-name>RCUBeatInterval</param-name>
-        <param-value>310</param-value> 
-	</context-param>
-
-	<listener>
-        <description>Socket服务随web启动而启动</description>
-        <listener-class>com.hotel.comm.rcu.ServerSocketListener</listener-class>
-    </listener>
 
     <!-- Spring 刷新Introspector防止内存泄露 -->
     <listener>
@@ -65,10 +51,15 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/springMVC-servlet.xml</param-value>  
+            <param-value>
+            	/WEB-INF/springMVC-servlet.xml,
+            	/WEB-INF/mina-context.xml
+            	</param-value>  
         </init-param>
         <load-on-startup>1</load-on-startup> 
     </servlet>
+    
+
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
         <url-pattern>*.do</url-pattern>
@@ -76,4 +67,5 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+    
 </web-app>

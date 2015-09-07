@@ -17,7 +17,7 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
 
-import com.hotel.service.CustomerService;
+import com.hotel.service.base.CustomerService;
 
 /**
  * websocket 连接管理

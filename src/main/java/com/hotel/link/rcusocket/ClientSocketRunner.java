@@ -19,7 +19,7 @@ import net.sf.json.JSONObject;
 
 /**
  * 
- * RCU
+ * Rcu
  * 
  * @author charo
  * 

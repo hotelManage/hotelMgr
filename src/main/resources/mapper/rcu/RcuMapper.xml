@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hotel.dao.rcu.RCUMapper" >
-  <resultMap id="BaseResultMap" type="com.hotel.model.rcu.RCU" >
+<mapper namespace="com.hotel.dao.rcu.RcuMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel.model.rcu.Rcu" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="room_id" property="roomId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -21,13 +21,13 @@
     delete from t_rcu
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.hotel.model.rcu.RCU" >
+  <insert id="insert" parameterType="com.hotel.model.rcu.Rcu" >
     insert into t_rcu (id, room_id, name, 
       sid, device_cfg_id)
     values (#{id,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{sid,jdbcType=VARCHAR}, #{deviceCfgId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.hotel.model.rcu.RCU" >
+  <insert id="insertSelective" parameterType="com.hotel.model.rcu.Rcu" >
     insert into t_rcu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.model.rcu.RCU" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.model.rcu.Rcu" >
     update t_rcu
     <set >
       <if test="roomId != null" >
@@ -82,7 +82,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hotel.model.rcu.RCU" >
+  <update id="updateByPrimaryKey" parameterType="com.hotel.model.rcu.Rcu" >
     update t_rcu
     set room_id = #{roomId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},

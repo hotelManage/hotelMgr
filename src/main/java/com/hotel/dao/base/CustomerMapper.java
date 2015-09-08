@@ -68,4 +68,14 @@ public interface CustomerMapper {
 	 * @return
 	 */
 	int countByMap(Map<String, Object> map);
+	
+	/**
+	 * 通过手机号码和密码读取一个用户
+	 * @param map
+	 * @return
+	 */
+	Customer loadByMobileAndPsd(Map<String, Object> map);
+	
+	
+	
 }

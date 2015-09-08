@@ -7,7 +7,7 @@ import net.sf.json.JSONObject;
 
 /**
  * 消息路由
- * app 的websocket 与  RCU socket 之间的消息传递。 
+ * app 的websocket 与  Rcu socket 之间的消息传递。 
  * @author charo
  *
  */

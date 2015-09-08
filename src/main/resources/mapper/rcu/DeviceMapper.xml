@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hotel.dao.rcu.DeviceCfgItemMapper" >
-  <resultMap id="BaseResultMap" type="com.hotel.model.rcu.DeviceCfgItem" >
+<mapper namespace="com.hotel.dao.rcu.DeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel.model.rcu.Device" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="cfg_id" property="cfgId" jdbcType="INTEGER" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
@@ -19,15 +19,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from t_device_cfg_item
+    from t_device
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_device_cfg_item
+    delete from t_device
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.hotel.model.rcu.DeviceCfgItem" >
-    insert into t_device_cfg_item (id, cfg_id, parent_id, 
+  <insert id="insert" parameterType="com.hotel.model.rcu.Device" >
+    insert into t_device (id, cfg_id, parent_id, 
       level, path, type, 
       name, number, expression, 
       note)
@@ -36,8 +36,8 @@
       #{name,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{expression,jdbcType=VARCHAR}, 
       #{note,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hotel.model.rcu.DeviceCfgItem" >
-    insert into t_device_cfg_item
+  <insert id="insertSelective" parameterType="com.hotel.model.rcu.Device" >
+    insert into t_device
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -103,8 +103,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.model.rcu.DeviceCfgItem" >
-    update t_device_cfg_item
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.model.rcu.Device" >
+    update t_device
     <set >
       <if test="cfgId != null" >
         cfg_id = #{cfgId,jdbcType=INTEGER},
@@ -136,8 +136,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hotel.model.rcu.DeviceCfgItem" >
-    update t_device_cfg_item
+  <update id="updateByPrimaryKey" parameterType="com.hotel.model.rcu.Device" >
+    update t_device
     set cfg_id = #{cfgId,jdbcType=INTEGER},
       parent_id = #{parentId,jdbcType=INTEGER},
       level = #{level,jdbcType=INTEGER},

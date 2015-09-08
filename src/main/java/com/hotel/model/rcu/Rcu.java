@@ -1,6 +1,6 @@
 package com.hotel.model.rcu;
 
-public class RCU {
+public class Rcu {
     private Integer id;
 
     private Integer roomId;

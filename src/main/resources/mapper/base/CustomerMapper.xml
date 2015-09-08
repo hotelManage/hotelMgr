@@ -174,8 +174,18 @@
   		</if>
   </select>
   
-   <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
+  <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
   		select count(*) from t_customer  
+  </select>
+  
+  <select id="loadByMobileAndPsd"   parameterType="java.util.Map"  resultMap="BaseResultMap" >
+  		select
+    		<include refid="Base_Column_List" />
+    	from
+    		t_customer
+    	where
+    		mobile =#{mobile,jdbcType=VARCHAR} and
+    		psd=#{mobile,jdbcType=VARCHAR}
   </select>
   
 </mapper>

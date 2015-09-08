@@ -1,5 +1,6 @@
 package com.hotel.service.base;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,4 +46,16 @@ public class CustomerService {
 		return result; 
 	}
 
+	public Customer loadByMobileAndPsd(String mobile,String psd){
+		Map<String,Object> map=new HashMap<String,Object>();
+		
+		map.put("mobile", mobile);
+		map.put("psd", psd);
+		
+		Customer c=customerMapper.loadByMobileAndPsd(map);
+		
+		return c;
+
+	}
+	
 }

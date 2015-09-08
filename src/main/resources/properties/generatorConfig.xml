@@ -42,13 +42,13 @@
 	       enableCountByExample="false"
 	       enableUpdateByExample="false"/>
 	       
-	       <table tableName="t_device_cfg_item" domainObjectName="DeviceCfgItem"
+	       <table tableName="t_device" domainObjectName="Device"
            enableSelectByExample="false"
 	       enableDeleteByExample="false"
 	       enableCountByExample="false"
 	       enableUpdateByExample="false"/>
 	       
-	       <table tableName="t_rcu" domainObjectName="RCU"
+	       <table tableName="t_rcu" domainObjectName="Rcu"
            enableSelectByExample="false"
 	       enableDeleteByExample="false"
 	       enableCountByExample="false"

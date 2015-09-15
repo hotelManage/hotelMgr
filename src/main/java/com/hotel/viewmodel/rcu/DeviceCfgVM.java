@@ -16,5 +16,4 @@ public class DeviceCfgVM extends DeviceCfg{
 	public void setDevices(List<Device> devices) {
 		this.devices = devices;
 	}
-	
 }

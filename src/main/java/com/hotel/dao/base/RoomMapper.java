@@ -69,4 +69,12 @@ public interface RoomMapper {
 	 * @return
 	 */
 	List<RoomVM> loadRoomList(Map<String, Object> map);
+	
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
+	RoomVM loadVMById(Integer id);
+	
 }

@@ -3,6 +3,7 @@ package com.hotel.controller.base;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hotel.core.Result;
 import com.hotel.model.base.User;
 import com.hotel.service.base.LoginService;
+import com.hotel.service.base.RoomService;
+import com.hotel.viewmodel.base.RoomVM;
  
 
 /**
@@ -31,7 +34,7 @@ import com.hotel.service.base.LoginService;
 public class loginController {
 
 	@Autowired LoginService loginService;
-	
+	@Autowired RoomService roomService;
 	
 	@RequestMapping(value = "login.do", produces = "application/json;charset=UTF-8")
 	 @ResponseBody
@@ -41,6 +44,11 @@ public class loginController {
 			HttpServletRequest request, HttpServletResponse response
 			) throws Exception{ 
 		try {
+			
+			
+			
+			RoomVM room = roomService.loadByOccupancyInfo(1, new Date());
+			
 			if (username.isEmpty()) {
 				response.sendRedirect("../login.jsp?optType=0");
 				return;

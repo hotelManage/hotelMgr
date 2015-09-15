@@ -11,6 +11,14 @@ public class RoomVM extends Room {
 	private String hotelName;
 	private List<Rcu> rcus = new ArrayList<Rcu>();
 	
+	public List<Rcu> getRcus() {
+		return rcus;
+	}
+
+	public void setRcus(List<Rcu> rcus) {
+		this.rcus = rcus;
+	}
+
 	public String getHotelName() {
 		return hotelName;
 	}

@@ -11,6 +11,8 @@ public class Device {
 
     private String path;
 
+    private boolean isLeaf;
+    
     private String type;
 
     private String name;
@@ -100,4 +102,12 @@ public class Device {
     public void setNote(String note) {
         this.note = note;
     }
+
+	public boolean isLeaf() {
+		return isLeaf;
+	}
+
+	public void setLeaf(boolean isLeaf) {
+		this.isLeaf = isLeaf;
+	}
 }

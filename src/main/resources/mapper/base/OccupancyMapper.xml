@@ -170,4 +170,15 @@
    <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
   		select count(*) from t_occupancy  
   </select>
+  
+  <select id="loadOccupancyByCustomerIdAndDate" parameterType="java.util.Map"  resultMap="BaseResultMap">
+  	select
+  		<include refid="Base_Column_List" />
+  	from t_occupancy
+  	where 
+  		customer_id		=		#{customerId,jdbcType=VARCHAR}  and
+  		checkin_time 	&lt;  	#{queryTime,jdbcType=TIMESTAMP} and
+  		checkout_time 	&gt; 	#{queryTime,jdbcType=TIMESTAMP} 
+  </select>
+  
 </mapper>

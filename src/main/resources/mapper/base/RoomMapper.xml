@@ -150,4 +150,82 @@
    <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
   		select count(*) from t_room  
   </select>
+  
+  <resultMap id="RoomVMMap" type="com.hotel.viewmodel.base.RoomVM" >
+  	<id column="room_id" property="id" jdbcType="INTEGER" />
+	<result column="room_building" property="building" jdbcType="VARCHAR" />
+  	<result column="room_floor" property="floor" jdbcType="VARCHAR" />
+  	<result column="room_name" property="name" jdbcType="VARCHAR" />
+  	<result column="room_note" property="note" jdbcType="VARCHAR" />
+  	<collection property="rcus" resultMap="RcuVMMap"/>
+  </resultMap>
+  
+  <resultMap id="RcuVMMap" type="com.hotel.viewmodel.rcu.RcuVM" >
+  	<id column="rcu_id" property="id" jdbcType="INTEGER" />
+  	<result column="room_id" property="roomId" jdbcType="INTEGER" />
+  	<result column="device_cfg_id" property="deviceCfgId" jdbcType="INTEGER" />
+	<result column="rcu_name" property="name" jdbcType="VARCHAR" />
+  	<result column="rcu_sid" property="sid" jdbcType="VARCHAR" />
+  	<result column="rcu_name" property="name" jdbcType="VARCHAR" />
+  	<result column="rcu_note" property="note" jdbcType="VARCHAR" />
+  	<association property="deviceCfg" resultMap="DeviceCfgVMMap" />
+  </resultMap>
+  
+  <resultMap id="DeviceCfgVMMap" type="com.hotel.viewmodel.rcu.DeviceCfgVM" >
+  	<id column="device_cfg_id" property="id" jdbcType="INTEGER" />
+	<result column="device_cfg_hotel_id" property="hotelId" jdbcType="INTEGER" />
+  	<result column="device_cfg_name" property="name" jdbcType="VARCHAR" />
+  	<result column="device_cfg_note" property="note" jdbcType="VARCHAR" />
+  	<collection property="devices" resultMap="DeviceVMMap"/>
+  </resultMap>
+  
+  <resultMap id="DeviceVMMap" type="com.hotel.model.rcu.Device" >
+  	<id column="device_id" property="id" jdbcType="INTEGER" />
+	<result column="device_cfg_id" property="cfgId" jdbcType="INTEGER" />
+	<result column="device_parent_id" property="parentId" jdbcType="INTEGER" />
+  	<result column="device_level" property="level" jdbcType="INTEGER" />
+  	<result column="device_path" property="path" jdbcType="VARCHAR" />
+  	<result column="device_is_leaf" property="isLeaf" jdbcType="BIT" />
+  	<result column="device_type" property="type" jdbcType="VARCHAR" />
+  	<result column="device_name" property="name" jdbcType="VARCHAR" />
+  	<result column="device_number" property="number" jdbcType="VARCHAR" />
+  	<result column="device_expression" property="expression" jdbcType="VARCHAR" />
+  	<result column="device_note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="loadVMById" parameterType="java.util.Map"  resultMap="RoomVMMap"  >
+  	select
+  		room.id			as room_id,
+  		room.building 	as room_building,
+  		room.floor 		as room_floor,
+  		room.name 		as room_name,
+  		room.note 		as room_note,
+  		rcu.id 			as rcu_id,
+  		rcu.name 		as rcu_name,
+  		rcu.sid 		as rcu_sid,
+  		rcu.note 		as rcu_note,
+  		dc.id 			as device_cfg_id,
+  		dc.hotel_id 	as device_cfg_hotel_id,
+  		dc.name 		as device_cfg_name,
+  		dc.note 		as device_cfg_note,
+  		d.id 			as device_id,
+  		d.parent_id 	as device_parent_id,
+  		d.level 		as device_level,
+  		d.path 			as device_path,
+  		d.is_leaf 		as device_is_leaf,
+  		d.type 			as device_type,
+  		d.name 			as device_name,
+  		d.number 		as device_number,
+  		d.expression 	as devcie_expression,
+  		d.note 			as device_note
+  	from t_room 			as room
+  	left join t_rcu 		as rcu 	on room.id=rcu.room_id 
+  	left join t_device_cfg 	as dc 	on rcu.device_cfg_id=dc.id
+  	left join t_device 		as d 	on d.cfg_id=dc.id
+  	where 
+  		room.id=#{room_id,jdbcType=INTEGER}
+  
+  </select>
+  
+  
 </mapper>

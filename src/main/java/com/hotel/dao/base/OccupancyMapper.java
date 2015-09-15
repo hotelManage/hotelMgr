@@ -69,4 +69,12 @@ public interface OccupancyMapper {
 	 * @return
 	 */
 	List<OccupancyVM> loadOccupancyVMList(Map<String, Object> map);
+	
+	/**
+	 * 根据客户id和时间获取入住信息
+	 * @param map
+	 * @return
+	 */
+	Occupancy loadOccupancyByCustomerIdAndDate(Map<String, Object> map);
+	
 }

@@ -8,6 +8,15 @@ import com.hotel.viewmodel.rcu.RcuVM;
 
 public class RoomVM extends Room {
 	private String hotelName;
+	private String text;
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	private List<RcuVM> rcus = new ArrayList<RcuVM>();
 	
 	public List<RcuVM> getRcus() {

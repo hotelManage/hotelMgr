@@ -134,6 +134,13 @@
   		</if>
   </select>
   
+   <select id="loadHotelComboList"  resultType="com.hotel.viewmodel.base.HotelVM"  >
+  		select 
+  			h.id		as id,
+  			h.name		as text 
+  		from t_hotel 
+  </select>
+  
    <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
   		select count(*) from t_hotel  
   </select>

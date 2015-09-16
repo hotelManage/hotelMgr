@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.hotel.core.ListResult;
 import com.hotel.dao.base.HotelMapper;
+import com.hotel.dao.base.OccupancyMapper;
 import com.hotel.dao.base.RoomMapper;
 import com.hotel.dao.base.RoomTypeMapper;
+import com.hotel.model.base.Occupancy;
 import com.hotel.viewmodel.base.HotelVM;
 import com.hotel.viewmodel.base.RoomTypeVM;
 import com.hotel.viewmodel.base.RoomVM;
@@ -20,6 +22,7 @@ public class HotelService {
 	@Autowired HotelMapper hotelMapper;
 	@Autowired RoomMapper roomMapper;
 	@Autowired RoomTypeMapper roomTypeMapper;
+	@Autowired OccupancyMapper occupancyMapper;
 	
 	
 	public ListResult<RoomVM> loadRoomList(Map<String, Object> map) {
@@ -44,6 +47,23 @@ public class HotelService {
 		List<HotelVM> ls = hotelMapper.loadHotelList(map);
 		ListResult<HotelVM> result=new ListResult<HotelVM>(count,ls);
 		return result; 
+	}
+
+	public List<HotelVM> loadHotelComboList() {
+		// TODO Auto-generated method stub
+		List<HotelVM> ls = hotelMapper.loadHotelComboList();
+		return ls;
+	}
+
+	public List<RoomVM> loadRoomComboList(Integer id) {
+		// TODO Auto-generated method stub
+		List<RoomVM> ls = roomMapper.loadRoomComboList(id);
+		return ls;
+	}
+
+	public int insertOccupancy(Occupancy occupancy) {
+		// TODO Auto-generated method stub
+		return occupancyMapper.insert(occupancy);
 	}
 
 }

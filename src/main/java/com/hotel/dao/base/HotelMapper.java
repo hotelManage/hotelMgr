@@ -69,4 +69,6 @@ public interface HotelMapper {
 	 * @return
 	 */
 	List<HotelVM> loadHotelList(Map<String, Object> map);
+
+	List<HotelVM> loadHotelComboList();
 }

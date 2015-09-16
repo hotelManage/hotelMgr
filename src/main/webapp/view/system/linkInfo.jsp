@@ -11,9 +11,10 @@
   </head>
   
   <body>
-  <div id="regionTb" style="display:none">  
-                <a id="linkBtn" name="linkBtn" href="javascript:void(0);" class="easyui-linkbutton"
-                    iconcls="icon-udq-add" plain="true">连接</a> 
+  <div id="consoleTab" >  
+                <a id="linkBtn" name="linkBtn" href="javascript:void(0);" class="easyui-linkbutton" onclick="LinkInfoManage.onConnection()"
+                    iconcls="icon-udq-add" plain="true">连接</a>
+                <label id="lblInfo">未连接</label>
                 
     </div>
     <div id="linkGrd"  style="margin:10px"></div>  

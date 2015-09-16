@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hotel.link.rcusocket.ClientSocketRunner;
+import com.hotel.link.router.MessageRouter;
 import com.hotel.service.base.CustomerService;
 
 public class RcuHandler extends IoHandlerAdapter {
@@ -60,11 +61,11 @@ public class RcuHandler extends IoHandlerAdapter {
 				
 				JSONObject jo =JSONObject.fromObject(txt);
 				
-				
-				
+				MessageRouter router=new MessageRouter(jo,this);
+				router.execute();
 			}
 		}catch(Exception ex){
-			
+			System.out.println(ex.getMessage());
 		}
 		
 

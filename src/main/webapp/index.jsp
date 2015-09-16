@@ -63,6 +63,9 @@
 						<li>
 							<span>设备类型</span>
 						</li> 
+						<li>
+							<span>控制台</span>
+						</li> 
 					</ul> 
 			</li>
 			

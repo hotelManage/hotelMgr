@@ -58,6 +58,9 @@ function onTreeMenuDblClick(row) {
 	case "设备类型":
 		src = "view/system/deviceList.jsp";
 		break; 
+	case "控制台":
+		src = "view/system/linkInfo.jsp";
+		break; 
 	}
 	$("#ifrContent").attr("src", src); 
 }

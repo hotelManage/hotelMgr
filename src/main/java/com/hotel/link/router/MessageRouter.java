@@ -1,9 +1,14 @@
 package com.hotel.link.router;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.hotel.link.app.AppHandler;
+import com.hotel.link.console.ConsoleHandler;
 import com.hotel.link.rcu.RcuHandler;
 import com.hotel.link.rcusocket.ClientSocketRunner;
 
@@ -25,6 +30,10 @@ public class MessageRouter {
 	 * app客户端连接集合
 	 */
 	private static Map<String, AppHandler> appHandlers=new ConcurrentHashMap<String, AppHandler>();
+	/**
+	 * 控制台连接集合
+	 */
+	private static Map<String, ConsoleHandler> consoleHandlers=new ConcurrentHashMap<String, ConsoleHandler>();
 	
 	private JSONObject jo;
 	private String dst;
@@ -43,12 +52,20 @@ public class MessageRouter {
 		return appHandlers;
 	}
 	
+	public static Map<String, ConsoleHandler> getConsoleHandlers(){
+		return consoleHandlers;
+	}
+	
 	public static void addRcuHandler(String sid,RcuHandler rcuHandler){
 		rcuHandlers.put(sid, rcuHandler);
 	}
 	
 	public static void addAppHandler(String usid,AppHandler appHandler){
 		appHandlers.put(usid, appHandler);
+	}
+	
+	public static void addConsoleHandler(String consoleId,ConsoleHandler consoleHandler){
+		consoleHandlers.put(consoleId, consoleHandler);
 	}
 	
 	public MessageRouter(JSONObject jo,RcuHandler rcuHandler){
@@ -66,12 +83,15 @@ public class MessageRouter {
 		this.dst= jo.getString("dst");
 		this.src=jo.getString("src");
 		this.sid=jo.getString("sid");
-		this.uid=jo.getString("usid");
+		this.uid=jo.getString("uid");
 		
 		this.jo=jo;
 	}
 	
 	public void execute(){
+		
+		toWebConsole();
+		
 		String type=jo.getString("type");
 		
 		switch(type){
@@ -126,4 +146,15 @@ public class MessageRouter {
 			
 		}
 	}
+	
+	private void toWebConsole(){
+		DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		jo.accumulate("time", df.format(new Date()));
+		
+		for(Entry<String,ConsoleHandler> e : consoleHandlers.entrySet()){
+			ConsoleHandler ch =e.getValue();
+			ch.sendMessage(jo.toString());
+		}
+	}
+	
 }

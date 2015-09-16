@@ -1,6 +1,6 @@
 $(function() { 
 	OccupancyManage.loadOccupancyList(); 
-	#("#addOccupancy").bind("click",OccupancyManage.addNewOccupancy());
+	$("#addOccupancy").bind("click",OccupancyManage.addNewOccupancy());
 });
 var m_OccupancyInfo_dlg;
 var m_customer_dlg;
@@ -134,7 +134,7 @@ var OccupancyManage = {
 		},
 		loadRoomList:function(record){
 			$("#roomName").combobox({
-				url:'hotel/getRoomListByHotleId.do?id='record.id,  
+				url:'hotel/getRoomListByHotleId.do?id='+record.id,  
 			    valueField:'id',  
 			    textField:'text' 
 			}); 

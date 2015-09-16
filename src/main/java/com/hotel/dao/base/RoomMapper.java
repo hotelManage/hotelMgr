@@ -76,5 +76,7 @@ public interface RoomMapper {
 	 * @return
 	 */
 	RoomVM loadVMById(Integer id);
+
+	List<RoomVM> loadRoomComboList(Integer id);
 	
 }

@@ -228,4 +228,11 @@
   </select>
   
   
+   <select id="loadRoomComboList"  parameterType="java.lang.Integer" resultType="com.hotel.viewmodel.base.RoomVM"  >
+  		select 
+  			r.id		as id,
+  			r.name		as text 
+  		from t_room r  where r.hotel_id = #{id,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

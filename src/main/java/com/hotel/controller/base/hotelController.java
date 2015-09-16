@@ -1,9 +1,12 @@
 package com.hotel.controller.base;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hotel.core.ListResult; 
+import com.hotel.core.Result;
 import com.hotel.model.base.Hotel;
+import com.hotel.model.base.Occupancy;
 import com.hotel.service.base.HotelService;
 import com.hotel.viewmodel.base.HotelVM;
 import com.hotel.viewmodel.base.RoomTypeVM;
@@ -91,4 +96,56 @@ public class hotelController {
 			return rs.toJson();
 		}
 	}
+	/**
+	 * 获取酒店列表，以下拉列表形式呈现；
+	 */
+	@RequestMapping(value = "getHotelComboList.do", produces = "application/json;charset=UTF-8")
+	public @ResponseBody
+	String getHotelComboList() throws Exception {
+		try {
+			List<HotelVM> list = hotelService.loadHotelComboList();
+			JSONArray result = JSONArray.fromObject(list);
+			return result.toString();
+		} catch (Exception ex) {
+			return "";
+		}
+	}
+	/**
+	 * 获取房间列表，以下拉列表形式呈现；传入参数为酒店id
+	 */
+	@RequestMapping(value = "getRoomListByHotleId.do", produces = "application/json;charset=UTF-8")
+	public @ResponseBody
+	String getRoomListByHotleId(
+			@RequestParam(value = "id", required = false) Integer id) throws Exception {
+		try {
+			List<RoomVM> list = hotelService.loadRoomComboList(id);
+			JSONArray result = JSONArray.fromObject(list);
+			return result.toString();
+		} catch (Exception ex) {
+			return "";
+		}
+	}
+	@RequestMapping(value = "/saveOccupancy.do", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String saveOccupancy(HttpServletRequest request, Occupancy occupancy) {
+		try {
+			boolean isSuccess = false;
+			String msg = "";    
+			int itemId = 0;
+			itemId = hotelService.insertOccupancy(occupancy);
+			if (itemId > 0) {
+				//message.setId(itemId);
+				isSuccess = true;
+				msg = "保存成功";
+			}
+			Result<Occupancy> result = new Result<Occupancy>(occupancy, isSuccess,
+					msg);
+			return result.toJson();
+		} catch (Exception ex) {
+			Result<Occupancy> result = new Result<Occupancy>(null, false,
+					ex.getMessage());
+			return result.toJson();
+		}
+	}
+	
 }

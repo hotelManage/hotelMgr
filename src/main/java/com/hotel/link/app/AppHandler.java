@@ -25,25 +25,13 @@ import com.hotel.service.base.CustomerService;
  *
  */
 @ServerEndpoint(value="/appWsLink/{customerId}",configurator = SpringConfigurator.class)
-public class AppWsLink {
+public class AppHandler {
 
-	
-	private static Map<Integer, AppWsLink> appLinks=new ConcurrentHashMap<Integer, AppWsLink>();
 	private Session session; //websocket 的session
 	private Integer customerId; //customerId 作为缓存key。
 	
 	@Autowired
 	private CustomerService customerService;
-	
-
-	/**
-	 * 全部客户端连接放到一个map中。
-	 * 必须确保线程访问安全！
-	 * @return
-	 */
-	public static Map<Integer, AppWsLink> getAppLinks(){
-		return appLinks;
-	}
 	
 	/**
 	 * 客户端请求一个webSocket连接
@@ -60,7 +48,7 @@ public class AppWsLink {
 				this.session = session;
 				this.customerId=customerId;
 				
-				appLinks.put(customerId, this);
+				//appLinks.put(customerId, this);
 			}
 		} catch (IOException e) {
 
@@ -76,7 +64,7 @@ public class AppWsLink {
 	 */
 	@OnMessage
 	public String onMessage(String msg, Session session) {
-		
+		this.session = session;
 		return null;
 	}
 
@@ -86,7 +74,7 @@ public class AppWsLink {
 	 */
 	@OnClose
 	public void onClose(Session session) {
-		appLinks.remove(customerId);
+
 	}
 
 	/**
@@ -103,15 +91,13 @@ public class AppWsLink {
 	 * 发送数据到客户端
 	 * @param msg
 	 */
-	public void send(JSONObject jo){
-
+	public void sendMessage(String msg){
 		try {
-			session.getBasicRemote().sendText(jo.toString());
+			session.getBasicRemote().sendText(msg);
 			
 		} catch (IOException e) {
 			
 			e.printStackTrace();
 		}
 	}
-	
 }

@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.hotel.model.base.Room;
-import com.hotel.model.rcu.DeviceCfg;
-import com.hotel.model.rcu.Rcu;
+import com.hotel.viewmodel.rcu.RcuVM;
 
 public class RoomVM extends Room {
 	private String hotelName;
-	private List<Rcu> rcus = new ArrayList<Rcu>();
+	private List<RcuVM> rcus = new ArrayList<RcuVM>();
 	
-	public List<Rcu> getRcus() {
+	public List<RcuVM> getRcus() {
 		return rcus;
 	}
 
-	public void setRcus(List<Rcu> rcus) {
+	public void setRcus(List<RcuVM> rcus) {
 		this.rcus = rcus;
 	}
 

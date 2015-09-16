@@ -17,13 +17,11 @@ import com.hotel.service.base.CustomerService;
 
 public class RcuHandler extends IoHandlerAdapter {
 	
-	/**
-	 * rcu客户端端连接的集合。
-	 */
-	private static Map<String,RcuHandler> rcuHandlers=new ConcurrentHashMap<String,RcuHandler>();
-	
+
 	@Autowired 
 	private CustomerService customerService;
+	
+	private IoSession ioSession;
 	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 	
@@ -47,18 +45,34 @@ public class RcuHandler extends IoHandlerAdapter {
 		System.out.println("sessionIdle");
     }
 	
+	/**
+	 * 获取RCU端发送的数据。
+	 */
 	@Override
     public void messageReceived(IoSession session, Object message) throws Exception {
 
-		if(message != null){
-			String txt=(String)message;
-			txt=txt.trim().replaceAll("#@", "");
-			
-			JSONObject jo =JSONObject.fromObject(txt);
-			
-			
+		this.ioSession=session;
+		
+		try{
+			if(message != null){
+				String txt=(String)message;
+				txt=txt.trim().replaceAll("#@", "");
+				
+				JSONObject jo =JSONObject.fromObject(txt);
+				
+				
+				
+			}
+		}catch(Exception ex){
 			
 		}
+		
 
     }
+	
+	public void sendMessage(String msg){
+		if(this.ioSession != null){
+			this.ioSession.write(msg);
+		}
+	}
 }

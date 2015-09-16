@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hotel.core.Result;
 import com.hotel.model.base.User;
+import com.hotel.service.base.CustomerService;
 import com.hotel.service.base.LoginService;
 import com.hotel.service.base.RoomService;
+import com.hotel.viewmodel.base.CustomerRoomInfo;
 import com.hotel.viewmodel.base.RoomVM;
  
 
@@ -33,6 +35,7 @@ import com.hotel.viewmodel.base.RoomVM;
 @RequestMapping("/login")
 public class loginController {
 
+	@Autowired CustomerService customerService;
 	@Autowired LoginService loginService;
 	@Autowired RoomService roomService;
 	
@@ -45,9 +48,7 @@ public class loginController {
 			) throws Exception{ 
 		try {
 			
-			
-			
-			RoomVM room = roomService.loadByOccupancyInfo(1, new Date());
+			CustomerRoomInfo c = customerService.loadInfoByMobileAndPsd("13981970816", "96e79218965eb72c92a549dd5a330112");
 			
 			if (username.isEmpty()) {
 				response.sendRedirect("../login.jsp?optType=0");

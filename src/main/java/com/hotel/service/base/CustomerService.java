@@ -1,5 +1,6 @@
 package com.hotel.service.base;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,10 @@ import com.hotel.dao.base.CustomerMapper;
 import com.hotel.dao.base.DeviceStateMapper;
 import com.hotel.dao.base.OccupancyMapper;
 import com.hotel.model.base.Customer;
+import com.hotel.viewmodel.base.CustomerRoomInfo;
 import com.hotel.viewmodel.base.OccupancyVM;
 import com.hotel.viewmodel.base.OperationVM;
+import com.hotel.viewmodel.base.RoomVM;
 
 @Service
 public class CustomerService {
@@ -21,6 +24,7 @@ public class CustomerService {
 	@Autowired CustomerMapper customerMapper;
 	@Autowired OccupancyMapper occupancyMapper;
 	@Autowired DeviceStateMapper deviceStateMapper;
+	@Autowired RoomService roomService;
 	
 	public ListResult<Customer> loadCustomerList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -58,4 +62,21 @@ public class CustomerService {
 
 	}
 	
+	public CustomerRoomInfo loadInfoByMobileAndPsd(String mobile,String psd){
+		
+		CustomerRoomInfo ci=null;
+		
+		Customer c=this.loadByMobileAndPsd(mobile, psd);
+		
+		if(c != null){
+			ci=new CustomerRoomInfo();
+			ci.setCustomer(c);
+			
+			RoomVM room=roomService.loadByOccupancyInfo(c.getId(), new Date());
+			ci.setRoom(room);
+		}
+		
+		return ci;
+
+	}
 }

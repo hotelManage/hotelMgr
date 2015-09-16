@@ -185,7 +185,7 @@
     		t_customer
     	where
     		mobile =#{mobile,jdbcType=VARCHAR} and
-    		psd=#{mobile,jdbcType=VARCHAR}
+    		psd=#{psd,jdbcType=VARCHAR}
   </select>
   
 </mapper>

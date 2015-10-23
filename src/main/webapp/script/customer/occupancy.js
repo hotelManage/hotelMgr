@@ -1,6 +1,5 @@
 $(function() { 
-	OccupancyManage.loadOccupancyList(); 
-	$("#addOccupancy").bind("click",OccupancyManage.addNewOccupancy());
+	OccupancyManage.loadOccupancyList();  
 });
 var m_OccupancyInfo_dlg;
 var m_customer_dlg;
@@ -56,72 +55,22 @@ var OccupancyManage = {
 			});
 		},
 		addNewOccupancy:function(){
+			OccupancyManage.loadRecource();
 			m_OccupancyInfo_dlg = art
 			.dialog({
 				id : 'dlgOccupancyInfo',
 				title : '新增入住记录',   
-				width: 250, 
+				width: 450, 
 				height: 300,
 				content : document.getElementById("div_newOccupancyInfo"),
 				lock : false,
 				initFn : function() { 
-					$("#hotelName").combobox({
-						url:'hotel/getHotelComboList.do',  
-					    valueField:'id',  
-					    textField:'text' ,
-					    onSelect:OccupancyManage.loadRoomList
-					}); 
-					$('#customerList').datagrid({
-						url : 'customer/getCustomerList.do',
-						fitColumns : true,
-						rownumbers : true,
-						title:"客户资料",
-						pagination : true,
-						pageNumber : 1,
-						pageSize : 10,
-						singleSelect:true,
-						onDblClickRow : OccupancyManage.selectCustomerAction,
-						nowrap : false,
-						idField : 'id',
-						columns : [ [ {
-							title : 'id',
-							field : 'id',
-							hidden : true
-						}, {
-							title : '客户',
-							field : 'name',
-							align : 'center',
-							width : 100
-						}, {
-							title : '性别',
-							field : 'sex',
-							align : 'center',
-							width : 100,
-							formatter:function(value,rowData,index){
-								if(value||value==1||value==0){
-									return "男";
-								}else{
-									return "女";
-								}
-							}
-						}, {
-							title : '身份证号',
-							field : 'idcard',
-							align : 'center',
-							width : 100,
-						}, {
-							title : '手机',
-							field : 'mobile',
-							align : 'center',
-							width : 100
-						} ] ]
-					});
 				},
 		        button: [
 		                 {
 		                     name: '保存',
 		                     callback: function () { 
-		                    	 OccupancyManage.selectCustomerAction();
+		                    	 OccupancyManage.saveOccupancyInfo();
 		                         return false;
 		                     },
 		                     focus: true
@@ -130,6 +79,60 @@ var OccupancyManage = {
 		                     name: '取消'
 		                 }
 		            ]
+			});
+		},
+		loadRecource:function(){
+
+			$("#hotelName").combobox({
+				url:'hotel/getHotelComboList.do',  
+			    valueField:'id',  
+			    textField:'text' ,
+			    onSelect:OccupancyManage.loadRoomList
+			}); 
+			$('#customerList').datagrid({
+				url : 'customer/getCustomerList.do',
+				fitColumns : true,
+				rownumbers : true,
+				title:"客户资料",
+				pagination : true,
+				width : 420,
+				height : 280,
+				singleSelect:true,
+				onDblClickRow : OccupancyManage.selectCustomerAction,
+				nowrap : false,
+				idField : 'id',
+				columns : [ [ {
+					title : 'id',
+					field : 'id',
+					hidden : true
+				}, {
+					title : '客户',
+					field : 'name',
+					align : 'center',
+					width : 100
+				}, {
+					title : '性别',
+					field : 'sex',
+					align : 'center',
+					width : 100,
+					formatter:function(value,rowData,index){
+						if(value||value==1||value==0){
+							return "男";
+						}else{
+							return "女";
+						}
+					}
+				}, {
+					title : '身份证号',
+					field : 'idcard',
+					align : 'center',
+					width : 100,
+				}, {
+					title : '手机',
+					field : 'mobile',
+					align : 'center',
+					width : 100
+				} ] ]
 			});
 		},
 		loadRoomList:function(record){
@@ -142,9 +145,9 @@ var OccupancyManage = {
 		selectCustomer:function(){
 			m_customer_dlg = art
 			.dialog({
-				id : 'dlgOccupancyInfo',
+				id : 'dlgcustomerInfo',
 				title : '客户选择',   
-				width: 250, 
+				width: 450, 
 				height: 300,
 				content : document.getElementById("div_customerList"),
 				lock : false,
@@ -164,6 +167,8 @@ var OccupancyManage = {
 		                 }
 		            ]
 			});
+			$('#customerList').datagrid("reload");
+			$('#customerList').datagrid("reload");
 		},
 		selectCustomerAction:function(){
 			var dataRows = $('#customerList').datagrid('getRows');
@@ -176,7 +181,7 @@ var OccupancyManage = {
 				$.messager.alert('操作提示', "请选择入住的客户!", "warning");
 				return;
 			} 
-			if (target.length > 0) {
+			if (target.length > 1) {
 				$.messager.alert('操作提示', "只能选择单个客户!", "warning");
 				return;
 			}
@@ -194,8 +199,8 @@ var OccupancyManage = {
 			occupancy.customerId = $("#customerId").val();
 			occupancy.roomId = $("#roomName").combobox("getValue");
 			occupancy.certificatesKey = "111111";
-			occupancy.checkinTime = $("#startTime").datebox("getValue");
-			occupancy.checkoutTime = $("#endTime").datebox("getValue");
+			occupancy.checkInTimeStr = $("#startTime").datebox("getValue");
+			occupancy.checkOutTimeStr = $("#endTime").datebox("getValue");
 			$.ajax({
 				url : "hotel/saveOccupancy.do",
 				type : "POST",
@@ -205,10 +210,21 @@ var OccupancyManage = {
 					if (req.isSuccess) { 
 						$.messager.alert("操作提示","保存成功~","info"); 
 						$('#occupancyListGrid').datagrid("reload");
+						OccupancyManage.clearFrom();
+                   	 	m_OccupancyInfo_dlg.close();
 					}else{
 						$.messager.alert("操作提示","保存失败~","error");
 					}
 				}
 			});
+		},
+		clearFrom:function(){
+			$("#customerId").val("");
+			$("#customerName").val("");
+			$("#customerPhone").val("");
+			$("#hotelName").combobox("setValue","");
+			$("#roomName").combobox("setValue","");
+			$("#startTime").datebox("setValue","");
+			$("#endTime").datebox("setValue","");
 		}
 };

@@ -1,5 +1,7 @@
 package com.hotel.controller.base;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -125,16 +127,18 @@ public class hotelController {
 			return "";
 		}
 	}
-	@RequestMapping(value = "/saveOccupancy.do", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "saveOccupancy.do", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String saveOccupancy(HttpServletRequest request, Occupancy occupancy) {
+	public String saveOccupancy(HttpServletRequest request, Occupancy occupancy)  throws Exception {
 		try {
 			boolean isSuccess = false;
 			String msg = "";    
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+			occupancy.setCheckinTime(sdf.parse(occupancy.getCheckInTimeStr()));
+			occupancy.setCheckoutTime(sdf.parse(occupancy.getCheckOutTimeStr()));
 			int itemId = 0;
 			itemId = hotelService.insertOccupancy(occupancy);
-			if (itemId > 0) {
-				//message.setId(itemId);
+			if (itemId > 0) { 
 				isSuccess = true;
 				msg = "保存成功";
 			}

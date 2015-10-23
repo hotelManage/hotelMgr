@@ -64,7 +64,7 @@ var LinkInfoManage ={
 		},
 		
 		onConnection :function(){
-			this.wsClient =new WebSocket('ws:localhost:8080/hotelmgr/console/' + this.consoleId);
+			this.wsClient =new WebSocket('ws:112.74.209.133:8080/hotelmgr/console/' + this.consoleId);
 			
 			this.wsClient.onopen=function(){
 				$("#lblInfo").html('已连接');

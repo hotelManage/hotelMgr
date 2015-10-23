@@ -1,8 +1,6 @@
 package com.hotel.link.rcu;
 
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import net.sf.json.JSONObject;
 
 import org.apache.mina.core.service.IoHandlerAdapter;
@@ -24,7 +22,18 @@ public class RcuHandler extends IoHandlerAdapter {
 	
 	private IoSession ioSession;
 	
+	private String sid;
+	
 	private final Logger logger = LoggerFactory.getLogger(getClass());
+	
+	
+	public void setSid(String sid){
+		this.sid=sid;
+	}
+	
+	public String getSid(){
+		return this.sid;
+	}
 	
 	@Override 
     public void sessionCreated(IoSession session) throws Exception {
@@ -38,7 +47,7 @@ public class RcuHandler extends IoHandlerAdapter {
 	
 	@Override
     public void sessionClosed(IoSession session) throws Exception {
-        // Empty handler
+        MessageRouter.getRcuHandlers().remove(this.sid);
     }
 	
 	@Override

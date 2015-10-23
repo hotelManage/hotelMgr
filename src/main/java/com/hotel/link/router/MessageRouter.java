@@ -71,6 +71,8 @@ public class MessageRouter {
 	public MessageRouter(JSONObject jo,RcuHandler rcuHandler){
 		this(jo);
 		this.rcuHandler =rcuHandler;
+		String sid=jo.getString("sid");
+		this.rcuHandler.setSid(sid);
 		
 	}
 

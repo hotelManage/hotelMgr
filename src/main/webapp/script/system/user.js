@@ -31,7 +31,7 @@ var UserManage = {
 				field : 'userType',
 				align : 'center',
 				width : 150,
-				formatter(value,rowData,index){
+				formatter:function(value,rowData,index){
 					if(value==1||value=="1"){
 						return "超级管理员";
 					}else if(value==2||value=="2"){

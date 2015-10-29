@@ -137,7 +137,8 @@
    <select id="loadHotelComboList"  resultType="com.hotel.viewmodel.base.HotelVM"  >
   		select 
   			id		as id,
-  			name		as text 
+  			name    as name,
+  			name	as text 
   		from t_hotel 
   </select>
   

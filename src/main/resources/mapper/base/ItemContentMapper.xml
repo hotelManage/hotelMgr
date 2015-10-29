@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.dao.base.ItemContentMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.model.base.ItemContent">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="w_pix" jdbcType="INTEGER" property="wPix" />
+    <result column="h_pix" jdbcType="INTEGER" property="hPix" />
+    <result column="index" jdbcType="INTEGER" property="index" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, file_name, url, w_pix, h_pix, item_id, index
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_item_content
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_item_content
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.model.base.ItemContent">
+    insert into t_item_content (id, file_name, url, 
+      w_pix, h_pix,item_id)
+    values (#{id,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{wPix,jdbcType=INTEGER}, #{hPix,jdbcType=INTEGER},#{itemId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.model.base.ItemContent">
+    insert into t_item_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="wPix != null">
+        w_pix,
+      </if>
+      <if test="hPix != null">
+        h_pix,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="index != null">
+        index,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="wPix != null">
+        #{wPix,jdbcType=INTEGER},
+      </if>
+      <if test="hPix != null">
+        #{hPix,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="index != null">
+        #{index,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.model.base.ItemContent">
+    update t_item_content
+    <set>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="wPix != null">
+        w_pix = #{wPix,jdbcType=INTEGER},
+      </if>
+      <if test="hPix != null">
+        h_pix = #{hPix,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="index != null">
+        index = #{index,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.model.base.ItemContent">
+    update t_item_content
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      w_pix = #{wPix,jdbcType=INTEGER},
+      h_pix = #{hPix,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=INTEGER},
+      index = #{index,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByItemId" parameterType="com.hotel.model.base.ItemContent">
+    update t_item_content
+    <set>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="wPix != null">
+        w_pix = #{wPix,jdbcType=INTEGER},
+      </if>
+      <if test="hPix != null">
+        h_pix = #{hPix,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+</mapper>

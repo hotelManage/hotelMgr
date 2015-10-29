@@ -41,6 +41,9 @@
 				<span>酒店</span>
 					<ul>
 						<li>
+							<span>服务项目</span>
+						</li>
+						<li>
 							<span>酒店资料</span>
 						</li>
 						<li>
@@ -48,6 +51,9 @@
 						</li>
 						<li>
 							<span>房间类型</span>
+						</li>
+						<li>
+							<span>酒店服务</span>
 						</li>
 					</ul> 
 			</li>

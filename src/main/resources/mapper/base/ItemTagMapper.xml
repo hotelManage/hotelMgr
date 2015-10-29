@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hotel.dao.base.ItemTagMapper">
+  <resultMap id="BaseResultMap" type="com.hotel.model.base.ItemTag">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+    <result column="is_used" jdbcType="BIT" property="isUsed" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, note, icon_url, is_used
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_item_tag
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_item_tag
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.model.base.ItemTag">
+    insert into t_item_tag (id, name, note, 
+      icon_url, is_used)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{iconUrl,jdbcType=VARCHAR}, #{isUsed,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.model.base.ItemTag">
+    insert into t_item_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="iconUrl != null">
+        icon_url,
+      </if>
+      <if test="isUsed != null">
+        is_used,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="iconUrl != null">
+        #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsed != null">
+        #{isUsed,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.model.base.ItemTag">
+    update t_item_tag
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="iconUrl != null">
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isUsed != null">
+        is_used = #{isUsed,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.model.base.ItemTag">
+    update t_item_tag
+    set name = #{name,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      is_used = #{isUsed,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
+  		select count(*) from t_item_tag 
+  		where is_used = 1 
+  </select>
+  <select id="loadItemTagList"   parameterType="java.util.Map"  resultMap="BaseResultMap"  >
+  		select 
+  			<include refid="Base_Column_List" />
+  		from t_item_tag  
+  		where is_used = 1
+  		<if test="pageStart !=null">
+  		limit #{pageStart,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  		</if>
+  </select>
+  <select id="loadItemTagComboList"  resultMap="BaseResultMap"  >
+  		select 
+  			<include refid="Base_Column_List" />
+  		from t_item_tag 
+  		where is_used = 1
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_item_tag
+    where name = #{name,jdbcType=VARCHAR} and is_used = 1
+  </select>
+</mapper>

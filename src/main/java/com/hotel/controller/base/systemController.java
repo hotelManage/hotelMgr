@@ -23,7 +23,7 @@ public class systemController {
 	
 	
 	/**
-	 * 获取酒店列表，以列表形式呈现；
+	 * 获取设备列表，以列表形式呈现；
 	 */
 	@RequestMapping(value = "getDeviceList.do", produces = "application/json;charset=UTF-8")
 	public @ResponseBody

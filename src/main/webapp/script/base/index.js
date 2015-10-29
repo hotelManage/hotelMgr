@@ -49,6 +49,12 @@ function onTreeMenuDblClick(row) {
 	case "房间类型":
 		src = "view/hotel/roomTypeList.jsp";
 		break; 
+	case "服务项目":
+		src = "view/hotel/itemTagList.jsp";
+		break; 
+	case "酒店服务":
+		src = "view/hotel/hotelItemList.jsp";
+		break; 
 	case "用户资料":
 		src = "view/system/userList.jsp";
 		break;

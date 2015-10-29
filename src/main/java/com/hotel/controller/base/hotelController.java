@@ -190,7 +190,7 @@ public class hotelController {
 		}
 	}
 	/**
-	 * 加载关联表
+	 * 加载关联表ItemTagAssociation
 	 */
 	@RequestMapping(value = "getItemTagAssociationList.do", produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -231,7 +231,14 @@ public class hotelController {
 			return "";
 		}
 	}
-	@RequestMapping(value = "saveItemTag.do",produces = "application/json;charset=UTF-8")
+	/**
+	 * 项目ItemTag新增、更新
+	 * @param item
+	 * @param icon
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "saveItemTag.do")
 	public @ResponseBody String saveItemTag(ItemTag item,
 			@RequestParam MultipartFile icon,HttpServletRequest request) {
 		Result<ItemTag> result = new Result<ItemTag>();

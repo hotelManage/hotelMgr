@@ -5,11 +5,10 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
     <result column="is_used" jdbcType="BIT" property="isUsed" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, note, icon_url, is_used
+    id, name, note, is_used
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +22,9 @@
   </delete>
   <insert id="insert" parameterType="com.hotel.model.base.ItemTag">
     insert into t_item_tag (id, name, note, 
-      icon_url, is_used)
+       is_used)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
-      #{iconUrl,jdbcType=VARCHAR}, #{isUsed,jdbcType=BIT})
+       #{isUsed,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.hotel.model.base.ItemTag">
     insert into t_item_tag
@@ -38,9 +37,6 @@
       </if>
       <if test="note != null">
         note,
-      </if>
-      <if test="iconUrl != null">
-        icon_url,
       </if>
       <if test="isUsed != null">
         is_used,
@@ -56,9 +52,6 @@
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
       </if>
-      <if test="iconUrl != null">
-        #{iconUrl,jdbcType=VARCHAR},
-      </if>
       <if test="isUsed != null">
         #{isUsed,jdbcType=BIT},
       </if>
@@ -73,9 +66,6 @@
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
       </if>
-      <if test="iconUrl != null">
-        icon_url = #{iconUrl,jdbcType=VARCHAR},
-      </if>
       <if test="isUsed != null">
         is_used = #{isUsed,jdbcType=BIT},
       </if>
@@ -86,7 +76,6 @@
     update t_item_tag
     set name = #{name,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
-      icon_url = #{iconUrl,jdbcType=VARCHAR},
       is_used = #{isUsed,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>

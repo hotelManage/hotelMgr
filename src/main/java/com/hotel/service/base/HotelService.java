@@ -27,7 +27,6 @@ import com.hotel.viewmodel.base.RoomTypeVM;
 import com.hotel.viewmodel.base.RoomVM;
 
 @Service
-@Transactional
 public class HotelService {
 
 	@Autowired HotelMapper hotelMapper;
@@ -137,7 +136,9 @@ public HotelItemVM selectHotelItemByName(String name) {
  * insert HotelItem、ItemContent、ItemTagAssociation
  * @param item
  * @param ic 
+ * @throws Exception 
  */
+@Transactional
 public void insert(HotelItemVM item, ItemContent ic) {
 	HotelItem i = new HotelItem();
 	i.setHotelId(item.getHotelId());
@@ -147,6 +148,9 @@ public void insert(HotelItemVM item, ItemContent ic) {
 	i.setNote(item.getNote());
 	i.setTel(item.getTel());
 	hotelItemMapper.insert(i);
+//	if(i!=null){
+//		throw new Exception("dddd");
+//	}
 	
 	ItemContent itemContent = new ItemContent();
 	itemContent.setFileName(ic.getFileName());
@@ -173,10 +177,11 @@ public void insert(HotelItemVM item, ItemContent ic) {
 	
 }
 /**
- * 更新 HotelItem、ItemContent、ItemTagAssociation
+ * update HotelItem、ItemContent、ItemTagAssociation
  * @param item
  * @param ic 
  */
+@Transactional
 public void update(HotelItemVM item, ItemContent ic) {
 	HotelItem i = new HotelItem();
 	i.setHotelId(item.getHotelId());

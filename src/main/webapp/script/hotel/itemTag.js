@@ -33,19 +33,10 @@ var ItemTagManage = {
 					field : 'note',
 					align : 'center',
 					width : 100,
-				}, {
-					title : '图标',
-					field : 'iconUrl',
-					align : 'center',
-					//width : 100,
-					formatter : function(value, rowData, index) {
-						return "<img style='width:30px;height:30px;' src='"+rowData.iconUrl+"'/>";
-					}
 				} ] ]
 			});
 		},
 		addItemTag:function(){
-			$("#div_ItemTagInfo p[name='p_img']").hide();
 			m_itemTagInfo_dlg = art
 			.dialog({
 				id : 'dlgItemTagInfo',
@@ -95,10 +86,8 @@ var ItemTagManage = {
 			var id = target[0].id;
 			var name = target[0].name;
 			var note = target[0].note;
-			var iconUrl = target[0].iconUrl;
 			$('#itemTagName').val(name);
 			$('#itemTagNote').val(note);
-			$("#itemTagIcon").attr("src",iconUrl);
 			m_itemTagInfo_dlg = art
 			.dialog({
 				id : 'dlgItemTagInfo',
@@ -136,19 +125,10 @@ var ItemTagManage = {
 			m_itemTag.name = $('#itemTagName').val();
 			m_itemTag.note = $('#itemTagNote').val();
 			m_itemTag.isUsed = 1;
-			var icon = $("#icon").val();  
-			var extname = icon.substring(icon.lastIndexOf(".")+1,icon.length);  
-			extname = extname.toLowerCase();//处理了大小写   
-//		    if(m_type == 1||m_type =="1"){
-//		    	m_itemTag.iconUrl = score.iconUrl;
-//			}
-		    $.ajaxFileUpload({
+		    $.ajax({
 				url : "hotel/saveItemTag.do",
-				secureuri:false,                       //是否启用安全提交,默认为false
-				fileElementId:'icon',
 				type : "POST",
 				dataType : "json",
-				async : false,
 				data : m_itemTag,
 				success : function(req) {
 					if (req.isSuccess) {
@@ -209,7 +189,6 @@ var ItemTagManage = {
 		clearFrom:function(){
 			$("#itemTagName").val("");
 			$("#itemTagNote").val("");
-			$("#icon").val("");
 		},
 		closeDialog : function(){
 			m_itemTagInfo_dlg.close();

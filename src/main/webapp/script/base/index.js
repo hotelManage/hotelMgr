@@ -67,6 +67,9 @@ function onTreeMenuDblClick(row) {
 	case "控制台":
 		src = "view/system/linkInfo.jsp";
 		break; 
+	case "菜单":
+		src = "view/app/functionList.jsp";
+		break; 
 	}
 	$("#ifrContent").attr("src", src); 
 }

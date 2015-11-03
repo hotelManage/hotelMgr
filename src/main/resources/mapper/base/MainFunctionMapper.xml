@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hotel.dao.base.MainFunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel.model.base.MainFunction" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="function_type" property="functionType" jdbcType="INTEGER" />
+    <result column="icon_url" property="iconUrl" jdbcType="VARCHAR" />
+    <result column="item_tag_id" property="itemTagId" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, function_type, icon_url, item_tag_id, sort
+  </sql>
+  <resultMap id="BaseVMResultMap" type="com.hotel.viewmodel.base.MainFunctionVM" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="function_type" property="functionType" jdbcType="INTEGER" />
+    <result column="icon_url" property="iconUrl" jdbcType="VARCHAR" />
+    <result column="item_tag_id" property="itemTagId" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    
+    <result column="tag_name" property="tagName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="BaseVM_Column_List" >
+    m.id, m.function_type, m.icon_url, m.item_tag_id, m.sort, tag.name as tagName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_main_function
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_main_function
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hotel.model.base.MainFunction" >
+    insert into t_main_function (id, function_type, icon_url, 
+      item_tag_id, sort)
+    values (#{id,jdbcType=INTEGER}, #{functionType,jdbcType=INTEGER}, #{iconUrl,jdbcType=VARCHAR}, 
+      #{itemTagId,jdbcType=INTEGER}, #{sort,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hotel.model.base.MainFunction" >
+    insert into t_main_function
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="functionType != null" >
+        function_type,
+      </if>
+      <if test="iconUrl != null" >
+        icon_url,
+      </if>
+      <if test="itemTagId != null" >
+        item_tag_id,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="functionType != null" >
+        #{functionType,jdbcType=INTEGER},
+      </if>
+      <if test="iconUrl != null" >
+        #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="itemTagId != null" >
+        #{itemTagId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hotel.model.base.MainFunction" >
+    update t_main_function
+    <set >
+      <if test="functionType != null" >
+        function_type = #{functionType,jdbcType=INTEGER},
+      </if>
+      <if test="iconUrl != null" >
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="itemTagId != null" >
+        item_tag_id = #{itemTagId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hotel.model.base.MainFunction" >
+    update t_main_function
+    set function_type = #{functionType,jdbcType=INTEGER},
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      item_tag_id = #{itemTagId,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="countByMap"   parameterType="java.util.Map"  resultType="java.lang.Integer"  >
+  		select count(*) from t_main_function 
+  </select>
+  <select id="loadFunctionList"   parameterType="java.util.Map"  resultMap="BaseVMResultMap"  >
+  		select 
+  			<include refid="BaseVM_Column_List" />
+  		from t_main_function m
+  		left join t_item_tag tag on m.item_tag_id = tag.id
+  		order by m.sort
+  		<if test="pageStart !=null">
+  		limit #{pageStart,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  		</if>
+  </select>
+</mapper>

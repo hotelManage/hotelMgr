@@ -36,25 +36,7 @@
         </javaClientGenerator>  
 
  
-	       <table tableName="t_item" domainObjectName="HotelItem"
-           enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>
-	       
-	       <table tableName="t_item_content" domainObjectName="ItemContent"
-           enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>
-	       
-	       <table tableName="t_item_tag" domainObjectName="ItemTag"
-           enableSelectByExample="false"
-	       enableDeleteByExample="false"
-	       enableCountByExample="false"
-	       enableUpdateByExample="false"/>
-	       
-	       <table tableName="t_item_tag_association" domainObjectName="ItemTagAssociation"
+	       <table tableName="t_main_function" domainObjectName="MainFunction"
            enableSelectByExample="false"
 	       enableDeleteByExample="false"
 	       enableCountByExample="false"

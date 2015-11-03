@@ -238,46 +238,24 @@ public class hotelController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "saveItemTag.do")
+	@RequestMapping(value = "saveItemTag.do", produces = "application/json;charset=UTF-8")
 	public @ResponseBody String saveItemTag(ItemTag item,
-			@RequestParam MultipartFile icon,HttpServletRequest request) {
+			HttpServletRequest request) {
 		Result<ItemTag> result = new Result<ItemTag>();
 		try {
 			ItemTag itemTag = hotelService.selectItemTagByName(item.getName());
-			String path = getClass().getResource("/").getFile().toString();
-			path = path.substring(0, (path.length() - 16))+"icon";
-			//以当前日期+时间来命名图标
-			Map<String, Object> m = GeneralUtil.getCurrentDate();
-			String date = (String) m.get("currentTime");
-			String iconName = date+".jpg";
-			
-	        String iconUrl = "icon/"+iconName;
-			if(icon.getSize()>0){
-		        File targetFile = new File(path, iconName);  
-		        if(!targetFile.exists()){  
-		            targetFile.mkdirs();  
-		        }  
-		        //保存  
-		        icon.transferTo(targetFile);  
-			}
-			//如果上传了图片就放到item中，没有上传则新增时就为空，编辑时还是原来的图片
-			String fileName = icon.getOriginalFilename();
-			if(fileName!=null&&fileName != ""){
-				item.setIconUrl(iconUrl);
-			}
-		
 			if (item.getId() > 0) {
 				hotelService.updateItemTag(item);
 			} else {
 				if(itemTag !=null){
 					result = new Result<ItemTag>(null,false,
-							"The item already exists!");
+							"項目已存在!");
 					return result.toJson();
 				}
 				hotelService.insertItemTag(item);
 			}
 			result = new Result<ItemTag>(null, true, false, false,
-					path);
+					"保存成功！");
 			return result.toJson();
 		} catch (Exception ex) {
 			result = new Result<ItemTag>(null, false, false, false,

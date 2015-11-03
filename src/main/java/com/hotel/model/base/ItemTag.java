@@ -7,8 +7,6 @@ public class ItemTag {
 
     private String note;
 
-    private String iconUrl;
-
     private Boolean isUsed;
 
     public Integer getId() {
@@ -33,14 +31,6 @@ public class ItemTag {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public String getIconUrl() {
-        return iconUrl;
-    }
-
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
     }
 
     public Boolean getIsUsed() {

@@ -110,7 +110,7 @@
   			<include refid="BaseVM_Column_List" />
   		from t_main_function m
   		left join t_item_tag tag on m.item_tag_id = tag.id
-  		order by m.sort;
+  		order by m.sort
   		<if test="pageStart !=null">
   		limit #{pageStart,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
   		</if>
